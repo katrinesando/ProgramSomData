@@ -116,16 +116,16 @@ let rec simplify (expr : aExp) : aExp =
         match ae1, ae2 with 
         | CstI 0, _ -> simplify ae2
         | _, CstI 0 -> simplify ae1
-        | _,_ -> Add(simplify ae1, simplify ae2)
+        | _,_ -> simplify (Add(simplify ae1, simplify ae2))
     | Sub(ae1, ae2) ->
         match ae1, ae2 with 
         | _, CstI 0 -> simplify ae1
         | _,_ when ae1 = ae2 -> CstI 0
-        | _,_ -> Sub(simplify ae1, simplify ae2)
+        | _,_ -> simplify (Sub(simplify ae1, simplify ae2))
     | Mul(ae1, ae2) -> 
         match ae1, ae2 with
         | CstI 1, _ -> simplify ae2
         | _, CstI 1 -> simplify ae1
         | CstI 0, _ -> CstI 0
         | _, CstI 0 -> CstI 0
-        | _,_ -> Mul(simplify ae1, simplify ae2)
+        | _,_ -> simplify (Mul(simplify ae1, simplify ae2))
