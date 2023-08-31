@@ -73,11 +73,48 @@ type aExp =
     | Add of aExp * aExp
     | Sub of aExp * aExp
     | Mul of aExp * aExp
-    | Div of aExp * aExp
 
-let (.+.) a b = Add (a, b)
-let (.-.) a b = Sub (a, b)
-let (.*.) a b = Mul (a, b)
+let ae1 = Sub(Var "v", Add(Var "w",Var "z"))
 
+let ae2 = Mul(CstI 2, Sub(Var "v", Add(Var "w",Var "z")))
 
+let ae3 = Add(Var "v", Add(Var "z", Add(Var "y", Var "x")))
 
+let rec fmt (expr : aExp) : string = 
+    match expr with 
+    | CstI i -> string i 
+    | Var str -> str
+    | Add (ae1, ae2) -> 
+        let res1 = fmt ae1 
+        let res2 = fmt ae2
+        sprintf "(%s + %s)" res1 res2
+    | Sub (ae1, ae2) -> 
+        let res1 = fmt ae1 
+        let res2 = fmt ae2
+        sprintf "(%s - %s)" res1 res2
+    | Mul (ae1, ae2) -> 
+        let res1 = fmt ae1 
+        let res2 = fmt ae2
+        sprintf "(%s * %s)" res1 res2
+
+let rec simplify (expr : aExp) : aExp =
+    match expr with 
+    | CstI i -> expr
+    | Var str -> expr
+    | Add(ae1, ae2) ->
+        match ae1, ae2 with 
+        | CstI 0, _ -> simplify ae2
+        | _, CstI 0 -> simplify ae1
+        | _,_ -> Add(simplify ae1, simplify ae2)
+    | Sub(ae1, ae2) ->
+        match ae1, ae2 with 
+        | _, CstI 0 -> simplify ae1
+        | _,_ when ae1 = ae2 -> CstI 0
+        | _,_ -> Sub(simplify ae1, simplify ae2)
+    | Mul(ae1, ae2) -> 
+        match ae1, ae2 with
+        | CstI 1, _ -> simplify ae2
+        | _, CstI 1 -> simplify ae1
+        | CstI 0, _ -> CstI 0
+        | _, CstI 0 -> CstI 0
+        | _,_ -> Mul(simplify ae1, simplify ae2)
