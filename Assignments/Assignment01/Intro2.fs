@@ -72,7 +72,6 @@ type aExp =
     | Var of string 
     | Add of aExp * aExp
     | Mul of aExp * aExp
-<<<<<<< HEAD
     | Sub of aExp * aExp
 
 let ae1 = Sub(Var "v", Add(Var "w",Var "z"))
@@ -108,32 +107,6 @@ let rec diff expr (Var diffvar) =
         let res1 = Mul((diff ae1 (Var diffvar)), ae2)
         let res2 = Mul((diff ae2 (Var diffvar)), ae1)
         Add(res1, res2)
-
-=======
-
-let ae1 = Sub(Var "v", Add(Var "w",Var "z"))
->>>>>>> 7ab9009f93e2246bfc636d0beef55406aceebc1a
-
-let ae2 = Mul(CstI 2, Sub(Var "v", Add(Var "w",Var "z")))
-
-let ae3 = Add(Var "v", Add(Var "z", Add(Var "y", Var "x")))
-
-let rec fmt (expr : aExp) : string = 
-    match expr with 
-    | CstI i -> string i 
-    | Var str -> str
-    | Add (ae1, ae2) -> 
-        let res1 = fmt ae1 
-        let res2 = fmt ae2
-        sprintf "(%s + %s)" res1 res2
-    | Sub (ae1, ae2) -> 
-        let res1 = fmt ae1 
-        let res2 = fmt ae2
-        sprintf "(%s - %s)" res1 res2
-    | Mul (ae1, ae2) -> 
-        let res1 = fmt ae1 
-        let res2 = fmt ae2
-        sprintf "(%s * %s)" res1 res2
 
 let rec simplify (expr : aExp) : aExp =
     match expr with 
