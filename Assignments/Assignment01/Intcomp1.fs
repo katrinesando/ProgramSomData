@@ -216,8 +216,10 @@ let rec freevars e : string list =
     match e with
     | CstI i -> []
     | Var x  -> [x]
-    | Let(x, erhs, ebody) -> 
-          union (freevars erhs, minus (freevars ebody, [x]))
+    | Let((name,exp)::erhs, ebody) ->
+          List.fold(fun acc (_, ex) -> union(freevars ex, acc)) [] erhs //Fold over the list and union with acc
+          
+          // union (freevars erhs, minus (freevars ebody, [x]))
     | Prim(ope, e1, e2) -> union (freevars e1, freevars e2);;
 
 (* Alternative definition of closed *)
