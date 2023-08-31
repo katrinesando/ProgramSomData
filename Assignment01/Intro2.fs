@@ -40,19 +40,23 @@ let rec eval e (env : (string * int) list) : int =
     | CstI i            -> i
     | Var x             -> lookup env x
     | If(e1,e2,e3)      -> if (eval e1 env) <> 0 then (eval e2 env) else (eval e3 env)
-    | Prim("+", e1, e2) -> eval e1 env + eval e2 env
-        // let i1 = eval e1 env
-        // let i2 = eval e2 env
-        // match ope with
-        // |"+" -> i1 + i2
-        // |_ -> eval ope - Er det meningen alle de andre ope også bare kommer her?
-    | Prim("*", e1, e2) -> eval e1 env * eval e2 env
-    | Prim("-", e1, e2) -> eval e1 env - eval e2 env
-    | Prim("max", e1, e2) -> if (eval e1 env) > (eval e2 env) then (eval e1 env) else (eval e2 env)
-    | Prim("min", e1, e2) -> if (eval e1 env) < (eval e2 env) then (eval e1 env) else (eval e2 env)
-    | Prim("==", e1, e2) -> if (eval e1 env) = (eval e2 env) then 1 else 0
-    | Prim _            -> failwith "unknown primitive";;
-
+    | Prim(ope, e1, e2) -> //eval e1 env + eval e2 env
+            let i1 = eval e1 env
+            let i2 = eval e2 env
+            match ope with
+            |"+"    -> i1 + i2
+            |"*"    -> i1*i2
+            |"-"    -> i1 - i2
+            |"max"  -> if i1 > i2 then i1 else i2
+            |"min"  -> if i1 < i2 then i1 else i2
+            |"=="   -> if i1 = i2 then 1 else 0
+    (*Udkommenteret kode til opgaven*)
+    // | Prim("*", e1, e2) -> eval e1 env * eval e2 env
+    // | Prim("-", e1, e2) -> eval e1 env - eval e2 env
+    // | Prim("max", e1, e2) -> if (eval e1 env) > (eval e2 env) then (eval e1 env) else (eval e2 env)
+    // | Prim("min", e1, e2) -> if (eval e1 env) < (eval e2 env) then (eval e1 env) else (eval e2 env)
+    // | Prim("==", e1, e2) -> if (eval e1 env) = (eval e2 env) then 1 else 0
+    // | Prim _            -> failwith "unknown primitive";;
 let e1v  = eval e1 env;;
 let e2v1 = eval e2 env;;
 let e2v2 = eval e2 [("a", 314)];;
