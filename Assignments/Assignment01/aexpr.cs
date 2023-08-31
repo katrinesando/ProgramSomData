@@ -11,7 +11,9 @@ class aexpr
         //1.4(ii)
         AExpr e1 = new Sub{Exp1 = new Add{Exp1 = new CSTI{I = 21}, Exp2 = new CSTI{I = 18}}, Exp2 = new Var{Name = "x"}};
         AExpr e2 = new Mul{Exp1 = new Sub{Exp1 = new Var{Name = "y"}, Exp2 = new CSTI{I = 70}}, Exp2 = new CSTI{I = 7}};
-        AExpr e3 = new Add{Exp1 = new CSTI{I = 17}, Exp2 = new Add{Exp1 = new CSTI{I = 21},Exp2 = new Mul{Exp1 = new CSTI{I =3}, Exp2 = new Var{Name= "w"}}}};
+        AExpr e3 = new Add{Exp1 = new CSTI{I = 17}, Exp2 = 
+                new Add{Exp1 = new CSTI{I = 21},Exp2 = 
+                new Mul{Exp1 = new CSTI{I =3}, Exp2 = new Var{Name= "w"}}}};
         Console.WriteLine(e.ToString());
         Console.WriteLine(e1.ToString());
         Console.WriteLine(e2.ToString());
@@ -86,7 +88,7 @@ class Add : Binop
             return Exp2;
         }
 
-        return new Add{Exp1 = Exp1.simplify(),Exp2 = Exp2.simplify()};
+        return new Add{Exp1 = Exp1.simplify(),Exp2 = Exp2.simplify()}.simplify();
     }
 
     public override int eval(List<Tuple<string, int>> env)
@@ -112,7 +114,7 @@ class Sub : Binop
             return new CSTI{I= 0};
         }
 
-        return new Sub{Exp1 = Exp1.simplify(),Exp2 = Exp2.simplify()};
+        return new Sub{Exp1 = Exp1.simplify(),Exp2 = Exp2.simplify()}.simplify();
     }
 
     public override int eval(List<Tuple<string, int>> env)
@@ -140,7 +142,7 @@ class Mul : Binop
         {
             return Exp2;
         }
-        return new Mul{Exp1 = Exp1.simplify(),Exp2 = Exp2.simplify()};
+        return new Mul{Exp1 = Exp1.simplify(),Exp2 = Exp2.simplify()}.simplify();
     }
 
     public override int eval(List<Tuple<string, int>> env)
