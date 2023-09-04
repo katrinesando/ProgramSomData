@@ -217,9 +217,10 @@ let rec freevars e : string list =
     | CstI i -> []
     | Var x  -> [x]
     | Let((name,exp)::erhs, ebody) ->
-          List.fold(fun acc (_, ex) -> union(freevars ex, acc)) [] erhs //Fold over the list and union with acc
-          
-          // union (freevars erhs, minus (freevars ebody, [x]))
+          let free = List.fold(fun acc (name, ex) -> union(freevars ex, acc)) [] erhs //Find free variables
+          let assign = List.fold(fun acc (name, _) -> name::acc) [] erhs //List with the assigned
+
+          union (free, minus (freevars ebody, assign))
     | Prim(ope, e1, e2) -> union (freevars e1, freevars e2);;
 
 (* Alternative definition of closed *)
@@ -252,9 +253,15 @@ let rec tcomp (e : expr) (cenv : string list) : texpr =
     match e with
     | CstI i -> TCstI i
     | Var x  -> TVar (getindex cenv x)
-    | Let(x, erhs, ebody) -> 
-      let cenv1 = x :: cenv 
-      TLet(tcomp erhs cenv, tcomp ebody cenv1)
+    | Let(erhs, ebody) ->
+      let env = List.fold(fun acc (name,_) -> name::acc) cenv erhs
+      let rerv = List.rev erhs
+      List.fold(fun (tletAcc, envAcc) (name, expr) -> //take rest all of expr and fold over
+          (TLet(tcomp expr (List.tail envAcc), tletAcc), (List.tail envAcc))
+          ) (TLet(tcomp (List.head rerv |> snd) (List.tail env),tcomp ebody env),env.Tail) rerv.Tail |> fst //takes from the back of the list - fold because it is generatued backwards
+
+      // let cenv1 = x :: cenv 
+      // TLet(tcomp e cenv, tcomp ebody env)
     | Prim(ope, e1, e2) -> TPrim(ope, tcomp e1 cenv, tcomp e2 cenv);;
 
 (* Evaluation of target expressions with variable indexes.  The
