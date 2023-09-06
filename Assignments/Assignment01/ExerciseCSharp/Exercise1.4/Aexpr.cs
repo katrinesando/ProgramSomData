@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
+﻿namespace Exercise1._4;
 
-namespace Exercise1._4;
-
-class aexpr
+public class AexprAll
 {
-    public void Main(String[] args)
+    public static void Run()
     {
         AExpr e = new Add{Exp1 = new CSTI{I = 17}, Exp2 = new Var{Name = "z"}};
         //1.4(ii)
@@ -14,6 +11,7 @@ class aexpr
         AExpr e3 = new Add{Exp1 = new CSTI{I = 17}, Exp2 = 
                 new Add{Exp1 = new CSTI{I = 21},Exp2 = 
                 new Mul{Exp1 = new CSTI{I =3}, Exp2 = new Var{Name= "w"}}}};
+        
         Console.WriteLine(e.ToString());
         Console.WriteLine(e1.ToString());
         Console.WriteLine(e2.ToString());

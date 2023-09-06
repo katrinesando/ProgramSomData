@@ -10,11 +10,10 @@
         <Compile Include="Appendix.fs" />
         <Compile Include="Intro1.fs" />
         <Compile Include="Intro2.fs" />
-        <Compile Include="aexpr.cs" />
         <Content Include="Machine.java" />
         <Compile Include="Intcomp1.fs" />
         <Content Include="Machine.class" />
-        <Compile Include="twoOne.fs" />
+        <Compile Include="twoOneTest.fs" />
     </ItemGroup>
 
 </Project>

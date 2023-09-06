@@ -397,3 +397,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/Assignments/Assignment01/twoOne.fs

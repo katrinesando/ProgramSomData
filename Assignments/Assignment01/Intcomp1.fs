@@ -10,7 +10,7 @@ module Intcomp1
 type expr = 
   | CstI of int
   | Var of string
-  | Let of (string * expr) list * expr
+  | Let of (string * expr) list * expr //Exercise2.1
   | Prim of string * expr * expr;;
 
 (* Some closed expressions: *)
@@ -49,7 +49,8 @@ let rec eval e (env : (string * int) list) : int =
     match e with
     | CstI i            -> i
     | Var x             -> lookup env x 
-    | Let((str, exp)::erhs, ebody) -> 
+    | Let((str, exp)::erhs, ebody) ->
+      //#region Exercise2.1
       let xval = eval exp env
       let env1 = (str, xval) :: env
       let lst =
@@ -57,6 +58,7 @@ let rec eval e (env : (string * int) list) : int =
               let sval = eval ex acc
               (s,sval)::acc) env1 erhs
       eval ebody lst
+      //#region Exercise2.1
     | Prim("+", e1, e2) -> eval e1 env + eval e2 env
     | Prim("*", e1, e2) -> eval e1 env * eval e2 env
     | Prim("-", e1, e2) -> eval e1 env - eval e2 env
@@ -217,10 +219,15 @@ let rec freevars e : string list =
     | CstI i -> []
     | Var x  -> [x]
     | Let((name,exp)::erhs, ebody) ->
-          let free = List.fold(fun acc (name, ex) -> union(freevars ex, acc)) [] erhs //Find free variables
-          let assign = List.fold(fun acc (name, _) -> name::acc) [] erhs //List with the assigned
+          //#region Exercise2.2
+          //Find free variables
+          let free = List.fold(fun acc (name, ex) -> union(freevars ex, acc)) [] erhs
+         
+          //List with the assigned
+          let assign = List.fold(fun acc (name, _) -> name::acc) [] erhs
 
           union (free, minus (freevars ebody, assign))
+          //#endregion
     | Prim(ope, e1, e2) -> union (freevars e1, freevars e2);;
 
 (* Alternative definition of closed *)
@@ -254,14 +261,13 @@ let rec tcomp (e : expr) (cenv : string list) : texpr =
     | CstI i -> TCstI i
     | Var x  -> TVar (getindex cenv x)
     | Let(erhs, ebody) ->
+      //#region Exercise2.3
       let env = List.fold(fun acc (name,_) -> name::acc) cenv erhs
       let rerv = List.rev erhs
       List.fold(fun (tletAcc, envAcc) (name, expr) -> //take rest all of expr and fold over
           (TLet(tcomp expr (List.tail envAcc), tletAcc), (List.tail envAcc))
           ) (TLet(tcomp (List.head rerv |> snd) (List.tail env),tcomp ebody env),env.Tail) rerv.Tail |> fst //takes from the back of the list - fold because it is generatued backwards
-
-      // let cenv1 = x :: cenv 
-      // TLet(tcomp e cenv, tcomp ebody env)
+      //endregion
     | Prim(ope, e1, e2) -> TPrim(ope, tcomp e1 cenv, tcomp e2 cenv);;
 
 (* Evaluation of target expressions with variable indexes.  The
