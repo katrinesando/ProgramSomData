@@ -10,31 +10,31 @@ module Intcomp1
 type expr = 
   | CstI of int
   | Var of string
-  | Let of (string * expr) list * expr //Exercise2.1
+  | Let of string * expr * expr
   | Prim of string * expr * expr;;
 
 (* Some closed expressions: *)
 
-let e1 = Let([("z", CstI 17)], Prim("+", Var "z", Var "z"));;
+let e1 = Let("z", CstI 17, Prim("+", Var "z", Var "z"));;
 
-let e2 = Let(["z", CstI 17], 
-             Prim("+", Let(["z", CstI 22], Prim("*", CstI 100, Var "z")),
+let e2 = Let("z", CstI 17, 
+             Prim("+", Let("z", CstI 22, Prim("*", CstI 100, Var "z")),
                        Var "z"));;
 
-let e3 = Let(["z", Prim("-", CstI 5, CstI 4)], 
+let e3 = Let("z", Prim("-", CstI 5, CstI 4), 
              Prim("*", CstI 100, Var "z"));;
 
-let e4 = Prim("+", Prim("+", CstI 20, Let(["z", CstI 17], 
+let e4 = Prim("+", Prim("+", CstI 20, Let("z", CstI 17, 
                                           Prim("+", Var "z", CstI 2))),
                    CstI 30);;
 
-let e5 = Prim("*", CstI 2, Let(["x", CstI 3], Prim("+", Var "x", CstI 4)));;
+let e5 = Prim("*", CstI 2, Let("x", CstI 3, Prim("+", Var "x", CstI 4)));;
 
-let e6 = Let(["z", Var "x"], Prim("+", Var "z", Var "x"))
-let e7 = Let(["z", CstI 3], Let(["y", Prim("+", Var "z", CstI 1)], Prim("+", Var "z", Var "y")))
-let e8 = Let(["z", Let(["x", CstI 4], Prim("+", Var "x", CstI 5))], Prim("*", Var "z", CstI 2))
-let e9 = Let(["z", CstI 3], Let(["y", Prim("+", Var "z", CstI 1)], Prim("+", Var "x", Var "y")))
-let e10 = Let(["z", Prim("+", Let(["x", CstI 4], Prim("+", Var "x", CstI 5)), Var "x")], Prim("*", Var "z", CstI 2))
+let e6 = Let("z", Var "x", Prim("+", Var "z", Var "x"))
+let e7 = Let("z", CstI 3, Let("y", Prim("+", Var "z", CstI 1), Prim("+", Var "z", Var "y")))
+let e8 = Let("z", Let("x", CstI 4, Prim("+", Var "x", CstI 5)), Prim("*", Var "z", CstI 2))
+let e9 = Let("z", CstI 3, Let("y", Prim("+", Var "z", CstI 1), Prim("+", Var "x", Var "y")))
+let e10 = Let("z", Prim("+", Let("x", CstI 4, Prim("+", Var "x", CstI 5)), Var "x"), Prim("*", Var "z", CstI 2))
 
 (* ---------------------------------------------------------------------- *)
 
@@ -49,16 +49,10 @@ let rec eval e (env : (string * int) list) : int =
     match e with
     | CstI i            -> i
     | Var x             -> lookup env x 
-    | Let((str, exp)::erhs, ebody) ->
-      //#region Exercise2.1
-      let xval = eval exp env
-      let env1 = (str, xval) :: env
-      let lst =
-          List.fold(fun acc (s, ex) ->
-              let sval = eval ex acc
-              (s,sval)::acc) env1 erhs
-      eval ebody lst
-      //#region Exercise2.1
+    | Let(x, erhs, ebody) -> 
+      let xval = eval erhs env
+      let env1 = (x, xval) :: env 
+      eval ebody env1
     | Prim("+", e1, e2) -> eval e1 env + eval e2 env
     | Prim("*", e1, e2) -> eval e1 env * eval e2 env
     | Prim("-", e1, e2) -> eval e1 env - eval e2 env
@@ -218,16 +212,8 @@ let rec freevars e : string list =
     match e with
     | CstI i -> []
     | Var x  -> [x]
-    | Let((name,exp)::erhs, ebody) ->
-          //#region Exercise2.2
-          //Find free variables
-          let free = List.fold(fun acc (name, ex) -> union(freevars ex, acc)) [] erhs
-         
-          //List with the assigned
-          let assign = List.fold(fun acc (name, _) -> name::acc) [] erhs
-
-          union (free, minus (freevars ebody, assign))
-          //#endregion
+    | Let(x, erhs, ebody) -> 
+          union (freevars erhs, minus (freevars ebody, [x]))
     | Prim(ope, e1, e2) -> union (freevars e1, freevars e2);;
 
 (* Alternative definition of closed *)
@@ -260,14 +246,9 @@ let rec tcomp (e : expr) (cenv : string list) : texpr =
     match e with
     | CstI i -> TCstI i
     | Var x  -> TVar (getindex cenv x)
-    | Let(erhs, ebody) ->
-      //#region Exercise2.3
-      let env = List.fold(fun acc (name,_) -> name::acc) cenv erhs
-      let rerv = List.rev erhs
-      List.fold(fun (tletAcc, envAcc) (name, expr) -> //take rest all of expr and fold over
-          (TLet(tcomp expr (List.tail envAcc), tletAcc), (List.tail envAcc))
-          ) (TLet(tcomp (List.head rerv |> snd) (List.tail env),tcomp ebody env),env.Tail) rerv.Tail |> fst //takes from the back of the list - fold because it is generatued backwards
-      //endregion
+    | Let(x, erhs, ebody) -> 
+      let cenv1 = x :: cenv 
+      TLet(tcomp erhs cenv, tcomp ebody cenv1)
     | Prim(ope, e1, e2) -> TPrim(ope, tcomp e1 cenv, tcomp e2 cenv);;
 
 (* Evaluation of target expressions with variable indexes.  The
@@ -397,3 +378,21 @@ let intsToFile (inss : int list) (fname : string) =
     System.IO.File.WriteAllText(fname, text);;
 
 (* -----------------------------------------------------------------  *)
+
+//#region Exercise 2.4
+let sinStrToInt sin : int list =
+    match sin with
+    | SCstI v -> [0;v]
+    | SVar v -> [1;v]
+    | SAdd -> [2]
+    | SSub -> [3]
+    | SMul -> [4]
+    | SPop -> [5]
+    | SSwap -> [6]
+
+let e1s = SCstI 4;;
+let e2s = [SCstI 17; SVar 0; SVar 1; SAdd; SSwap; SPop];;
+
+let assemble (lst: sinstr list) :int list =
+    List.fold(fun acc elem -> (acc@sinStrToInt elem)) [] lst
+//#endregion    

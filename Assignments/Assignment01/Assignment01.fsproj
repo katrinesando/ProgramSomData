@@ -8,12 +8,25 @@
     <ItemGroup>
         <Compile Include="Library.fs"/>
         <Compile Include="Appendix.fs" />
-        <Compile Include="Intro1.fs" />
-        <Compile Include="Intro2.fs" />
         <Content Include="Machine.java" />
-        <Compile Include="Intcomp1.fs" />
         <Content Include="Machine.class" />
         <Compile Include="twoOneTest.fs" />
+        <Content Include="Intcomp\Machine.java" />
+        <Content Include="Intcomp\Machine.class" />
+        <Compile Include="Intcomp\Intcomp1.fs" />
+        <Content Include="Intcomp\HelloLex\hello.exe" />
+        <Compile Include="Intcomp\HelloLex\hello.fs" />
+        <Content Include="Intcomp\HelloLex\hello.fsl" />
+        <Content Include="Intcomp\HelloLex\hello2.exe" />
+        <Compile Include="Intcomp\HelloLex\hello2.fs" />
+        <Content Include="Intcomp\HelloLex\hello2.fsl" />
+        <Content Include="Intcomp\HelloLex\hello3.exe" />
+        <Compile Include="Intcomp\HelloLex\hello3.fs" />
+        <Content Include="Intcomp\HelloLex\hello3.fsl" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="HelloExercise\HelloLexs\" />
     </ItemGroup>
 
 </Project>
