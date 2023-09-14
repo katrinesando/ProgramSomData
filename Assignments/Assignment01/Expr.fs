@@ -335,9 +335,11 @@ let intsToFile (inss : int list) (fname : string) =
     System.IO.File.WriteAllText(fname, text);;
 
 //-------------------
+open Parse;;
 //#region Exercise3.6
 let rec compString (str:string) : sinstr list =
     match str with
-    |"" -> [];
+    |"" -> []
+    |_ -> fromString str |> scomp <| []
 
 //#endregion
