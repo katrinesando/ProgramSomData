@@ -1,0 +1,20 @@
+Example of string it is able to parse (correctly-formed):
+
+> fromString "let abe = (y + 2) * 2 in 7 - abe end" ;;
+val it: Absyn.expr =
+  Let
+    ("abe", Prim ("*", Prim ("+", Var "y", CstI 2), CstI 2),
+     Prim ("-", CstI 7, Var "abe")) 
+
+Example of string it is not able to parse (ill-formed):
+
+> fromString "let abe2 = (d - 2 * 5 in 6 - abe2) end";;
+System.Exception: parse error near line 1, column 24
+
+   at Microsoft.FSharp.Core.PrintfModule.PrintFormatToStringThenFail@1448.Invoke(String message)
+   at FSI_0002.Parse.fromString(String str) in C:\Users\Adamh\OneDrive\Documents\GitHub\ProgramSomData\Assignments\Assignment01\ExprParse\Expr\Parse.fs:line 20
+   at <StartupCode$FSI_0009>.$FSI_0009.main@() in C:\Users\Adamh\OneDrive\Documents\GitHub\ProgramSomData\Assignments\Assignment01\ExprParse\Expr\stdin:line 11
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+Stopped due to error
+
