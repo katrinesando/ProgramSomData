@@ -333,3 +333,11 @@ let s3 = scomp e3 []
 let intsToFile (inss : int list) (fname : string) = 
     let text = String.concat " " (List.map string inss)
     System.IO.File.WriteAllText(fname, text);;
+
+//-------------------
+//#region Exercise3.6
+let rec compString (str:string) : sinstr list =
+    match str with
+    |"" -> [];
+
+//#endregion
