@@ -19,9 +19,11 @@ let keyword s =
     | "let" -> LET
     | "in"  -> IN
     | "end" -> END
+(*#region Exercise 3.7*)
     | "if" -> IF
     | "then" -> THEN
     | "else" -> ELSE
+(*#endregion*)
     | _     -> NAME s
 }
 

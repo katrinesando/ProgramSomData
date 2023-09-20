@@ -62,14 +62,7 @@ val it: Absyn.expr =
 Example of string it is not able to parse (ill-formed):
 
 > fromString "let abe2 = (d - 2 * 5 in 6 - abe2) end";;
-System.Exception: parse error near line 1, column 24
-
-   at Microsoft.FSharp.Core.PrintfModule.PrintFormatToStringThenFail@1448.Invoke(String message)
-   at FSI_0002.Parse.fromString(String str) in C:\Users\Adamh\OneDrive\Documents\GitHub\ProgramSomData\Assignments\Assignment01\ExprParse\Expr\Parse.fs:line 20
-   at <StartupCode$FSI_0009>.$FSI_0009.main@() in C:\Users\Adamh\OneDrive\Documents\GitHub\ProgramSomData\Assignments\Assignment01\ExprParse\Expr\stdin:line 11
-   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
-   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
-Stopped due to error
+Error
 
 ---------------------------3.7-----------------------
 fromString "if 3+z then (17) else 3*5-(2+9)";;

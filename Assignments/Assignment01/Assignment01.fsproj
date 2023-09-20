@@ -7,13 +7,9 @@
 
     <ItemGroup>
         <Compile Include="Library.fs"/>
-        <Content Include="Machine.java" />
-        <Content Include="Machine.class" />
-        <Compile Include="twoOneTest.fs" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="ExprParse\HelloLexs\" />
       <Content Include="ExprParse\Answer3.5.txt" />
       <Content Include="ExprParse\Answer3.3.txt" />
       <Compile Include="Absyn.fs" />
@@ -24,6 +20,7 @@
       <Content Include="ExprPar.fsy" />
       <Compile Include="Parse.fs" />
       <Compile Include="Expr.fs" />
+      <Content Include="ReadMe.txt" />
     </ItemGroup>
 
 </Project>
