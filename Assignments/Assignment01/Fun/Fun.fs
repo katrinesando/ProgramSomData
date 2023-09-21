@@ -24,7 +24,7 @@ let rec lookup env x =
 
 type value = 
   | Int of int
-  | Closure of string * string list * expr * value env       (* (f, x, fBody, fDeclEnv) *)
+  | Closure of string * string list * expr * value env       (* (f, x, fBody, fDeclEnv) *) //4.3 
 
 let rec eval (e : expr) (env : value env) : int =
     match e with 
@@ -52,18 +52,18 @@ let rec eval (e : expr) (env : value env) : int =
       let b = eval e1 env
       if b<>0 then eval e2 env
       else eval e3 env
-    | Letfun(f, xs, fBody, letBody) -> 
+    | Letfun(f, xs, fBody, letBody) ->  //4.3 start
       let bodyEnv = (f, Closure(f, xs, fBody, env)) :: env 
       eval letBody bodyEnv
     | Call(Var f, eArgs) -> 
       let fClosure = lookup env f
       match fClosure with
-      | Closure (f, xs, fBody, fDeclEnv) ->
+      | Closure (f, xs, fBody, fDeclEnv) -> 
         let xVals =
           List.fold (fun acc elem -> Int(eval elem env) :: acc) [] eArgs
         let temp = (f, fClosure) :: fDeclEnv
         let fBodyEnv = (List.zip xs xVals) @ temp
-        eval fBody fBodyEnv
+        eval fBody fBodyEnv //4.3 end
       | _ -> failwith "eval Call: not a function"
     | Call _ -> failwith "eval Call: not first-order function"
 
