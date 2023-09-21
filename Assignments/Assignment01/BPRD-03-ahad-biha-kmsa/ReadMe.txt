@@ -3,7 +3,7 @@ See file Answer3.3.txt for answer.
 
 
 Exercise 3.4
-See file Answer3.4.txt for answer.
+See file Answer3.4.pdf for derivation tree.
 
 
 Exercise 3.5
