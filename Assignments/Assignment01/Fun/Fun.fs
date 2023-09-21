@@ -60,9 +60,9 @@ let rec eval (e : expr) (env : value env) : int =
       match fClosure with
       | Closure (f, xs, fBody, fDeclEnv) -> 
         let xVals =
-          List.fold (fun acc elem -> Int(eval elem env) :: acc) [] eArgs
+          List.foldBack (fun elem acc -> Int(eval elem env) :: acc) eArgs [] 
         let temp = (f, fClosure) :: fDeclEnv
-        let fBodyEnv = (List.zip xs xVals) @ temp
+        let fBodyEnv = temp @ (List.zip xs xVals)
         eval fBody fBodyEnv //4.3 end
       | _ -> failwith "eval Call: not a function"
     | Call _ -> failwith "eval Call: not first-order function"

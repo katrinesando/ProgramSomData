@@ -12,7 +12,6 @@
     <ItemGroup>
       <Content Include="Fun\README.TXT" />
       <Compile Include="Fun\Absyn.fs" />
-      <Compile Include="Fun\ParseAndRun.fs" />
       <Compile Include="Fun\Parse.fs" />
       <Content Include="Fun\grammar.txt" />
       <Content Include="Fun\FunPar.fsy" />
@@ -21,6 +20,7 @@
       <Content Include="Fun\FunLex.fsl" />
       <Compile Include="Fun\FunLex.fs" />
       <Compile Include="Fun\Fun.fs" />
+      <Compile Include="Fun\ParseAndRun.fs" />
       <Compile Include="TypedFun\TypedFun.fs" />
       <Content Include="TypedFun\README.TXT" />
     </ItemGroup>
