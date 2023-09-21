@@ -44,6 +44,8 @@ rule Token = parse
                       SkipComment lexbuf; Token lexbuf }
   | '='             { EQ }
   | "<>"            { NE }
+  | "&&"            { AND } /* 4.5 */
+  | "||"            { OR } /* 4.5 */
   | '>'             { GT }
   | '<'             { LT }
   | ">="            { GE }
