@@ -1,0 +1,7 @@
+﻿---------------------------3.7-----------------------
+fromString "if 3+z then (17) else 3*5-(2+9)";;
+val it: Absyn.expr =
+  If
+    (Prim ("+", Var "z", CstI 3), CstI 17,
+     Prim ("-", Prim ("*", CstI 3, CstI 5), Prim ("+", CstI 2, CstI 9)))
+    
