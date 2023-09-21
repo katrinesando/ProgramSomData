@@ -63,11 +63,3 @@ Example of string it is not able to parse (ill-formed):
 
 > fromString "let abe2 = (d - 2 * 5 in 6 - abe2) end";;
 Error
-
----------------------------3.7-----------------------
-fromString "if 3+z then (17) else 3*5-(2+9)";;
-val it: Absyn.expr =
-  If
-    (Prim ("+", Var "z", CstI 3), CstI 17,
-     Prim ("-", Prim ("*", CstI 3, CstI 5), Prim ("+", CstI 2, CstI 9)))
-    

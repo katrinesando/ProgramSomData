@@ -12,6 +12,7 @@
     <ItemGroup>
       <Content Include="ExprParse\Answer3.5.txt" />
       <Content Include="ExprParse\Answer3.3.txt" />
+      <Content Include="ExprParse\Answer3.7.txt" />
       <Compile Include="Absyn.fs" />
       <Compile Include="ExprLex.fs" />
       <Content Include="ExprLex.fsl" />
