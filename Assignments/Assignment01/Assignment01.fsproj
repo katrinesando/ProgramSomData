@@ -23,6 +23,8 @@
       <Compile Include="Fun\Fun.fs" />
       <Compile Include="TypedFun\TypedFun.fs" />
       <Content Include="TypedFun\README.TXT" />
+      <Content Include="Answer.txt" />
+      <Content Include="BPRD-04-ahad-biha-kmsa\ReadMe.txt" />
     </ItemGroup>
 
 </Project>
