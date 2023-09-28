@@ -140,6 +140,11 @@ let rec typ (e : tyexpr) (env : typ env) : typ =
         else failwith "Call: wrong argument type"
       | _ -> failwith "Call: unknown function"
     | Call(_, eArg) -> failwith "Call: illegal function in call"
+    | ListExpr(elems, eTyp) -> (*start 5.7*)
+      List.fold (fun acc elem ->
+        if typ elem env <> acc then failwith "ListExpr: wrong element type"
+        else acc) eTyp elems
+        (*end 5.7*)
 
 let typeCheck e = typ e [];;
 
