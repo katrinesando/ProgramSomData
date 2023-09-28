@@ -34,7 +34,7 @@ C. Using the lexer, parser and first-order evaluator together:
    run (fromString "let y = 7 in y + 2 end");;
    run (fromString "let f x = x + 7 in f 2 end");;
    
-   run (fromString "let sum n = if n=1 then 1 else n+(sum (n-1)) in sum 1000  end");;
+   run (fromString "let sum n = if n=1 then 1 else n+(sum (n-1)) in sum 1000 end");;
    run (fromString "let pow x = if x = 0 then 1 else 3*(pow (x-1)) in pow 8 end");;
    run (fromString "let sumPow x = if x = 0 then 1 else (let pow exp = if exp = 0 then 1 else 3*(pow (exp-1)) in pow x end) + (sumPow (x-1))  in sumPow 11 end");;
    run (fromString "let sumPow x = if x = 0 then 0 else (x*x*x*x*x*x*x*x) + (sumPow (x-1))  in sumPow 10 end");;

@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Library.fs"/>
+        <Compile Include="Library.fs" />
     </ItemGroup>
 
     <ItemGroup>
@@ -23,6 +23,12 @@
       <Compile Include="Fun\ParseAndRun.fs" />
       <Compile Include="TypedFun\TypedFun.fs" />
       <Content Include="TypedFun\README.TXT" />
+      <Content Include="Answer.txt" />
+      <Content Include="BPRD-04-ahad-biha-kmsa\ReadMe.txt" />
+      <Compile Include="BPRD-04-ahad-biha-kmsa\Absyn.fs" />
+      <Content Include="BPRD-04-ahad-biha-kmsa\FunPar.fsy" />
+      <Content Include="BPRD-04-ahad-biha-kmsa\FunLex.fsl" />
+      <Compile Include="BPRD-04-ahad-biha-kmsa\Fun.fs" />
     </ItemGroup>
 
 </Project>
