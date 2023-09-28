@@ -61,7 +61,7 @@ let rec eval (e : expr) (env : value env) : int =
       match fClosure with
       | Closure (f, xs, fBody, fDeclEnv) -> 
         let xVals =
-          List.foldBack (fun elem acc -> Int(eval elem env) :: acc) eArgs [] 
+          List.foldBack (fun elem acc -> Int(eval elem env) :: acc) eArgs []
         let temp = (f, fClosure) :: fDeclEnv
         let fBodyEnv = temp @ (List.zip xs xVals)
         eval fBody fBodyEnv
