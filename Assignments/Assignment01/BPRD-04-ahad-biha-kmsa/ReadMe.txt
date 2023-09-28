@@ -40,8 +40,13 @@ See Absyn.fs and Fun.fs our code is marked by a //Start & //End comment
 
 
 --------------Exercise 4.4--------------
- 
- 
+Answers for running the code given in the exercise:
+
+> run(fromString "let pow x n = if n=0 then 1 else x * pow x (n-1) in pow 3 8 end");;
+val it: int = 6561
+
+> run(fromString "let max2 a b = if a<b then b else a in let max3 a b c = max2 a (max2 b c) in max3 25 6 62 end end");;
+val it: int = 62
  
 --------------Exercise4.5--------------
 See FunPar.fsy & FunLex.fsl all added lines are marked with comments
