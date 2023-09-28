@@ -35,16 +35,6 @@ let merge (ls : int list * int list) : int list =
   aux ls []
   
 let f a b = a + b
-        
-  
-  
-      
-    
-  
-  
-  
-  
-
 
 
 type 'v env = (string * 'v) list
