@@ -21,11 +21,14 @@
       <Compile Include="Fun\FunLex.fs" />
       <Compile Include="Fun\Fun.fs" />
       <Compile Include="Fun\ParseAndRun.fs" />
-      <Content Include="Fun\Answer.txt" />
       <Compile Include="TypedFun\TypedFun.fs" />
       <Content Include="TypedFun\README.TXT" />
       <Content Include="Answer.txt" />
       <Content Include="BPRD-04-ahad-biha-kmsa\ReadMe.txt" />
+      <Compile Include="BPRD-04-ahad-biha-kmsa\Absyn.fs" />
+      <Content Include="BPRD-04-ahad-biha-kmsa\FunPar.fsy" />
+      <Content Include="BPRD-04-ahad-biha-kmsa\FunLex.fsl" />
+      <Compile Include="BPRD-04-ahad-biha-kmsa\Fun.fs" />
     </ItemGroup>
 
 </Project>
