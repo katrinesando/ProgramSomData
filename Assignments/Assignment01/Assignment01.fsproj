@@ -31,6 +31,7 @@
       <Compile Include="Fun\Fun.fs" />
       <None Include="Fun\chap6.fsx" />
       <None Include="Fun\chap5.fsx" />
+      <Compile Include="Fun\Merge.cs" />
     </ItemGroup>
 
 </Project>
