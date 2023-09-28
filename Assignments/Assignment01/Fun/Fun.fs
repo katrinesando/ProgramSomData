@@ -52,7 +52,8 @@ let rec eval (e : expr) (env : value env) : int =
       let b = eval e1 env
       if b<>0 then eval e2 env
       else eval e3 env
-    | Letfun(f, xs, fBody, letBody) ->  //4.3 start
+    | Letfun(f, xs, fBody, letBody) ->
+      //4.3 start
       let bodyEnv = (f, Closure(f, xs, fBody, env)) :: env 
       eval letBody bodyEnv
     | Call(Var f, eArgs) -> 
@@ -63,7 +64,8 @@ let rec eval (e : expr) (env : value env) : int =
           List.foldBack (fun elem acc -> Int(eval elem env) :: acc) eArgs [] 
         let temp = (f, fClosure) :: fDeclEnv
         let fBodyEnv = temp @ (List.zip xs xVals)
-        eval fBody fBodyEnv //4.3 end
+        eval fBody fBodyEnv
+        //4.3 end
       | _ -> failwith "eval Call: not a function"
     | Call _ -> failwith "eval Call: not first-order function"
 

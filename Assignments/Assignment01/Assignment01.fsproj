@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Library.fs"/>
+        <Compile Include="Library.fs" />
     </ItemGroup>
 
     <ItemGroup>
@@ -21,6 +21,7 @@
       <Compile Include="Fun\FunLex.fs" />
       <Compile Include="Fun\Fun.fs" />
       <Compile Include="Fun\ParseAndRun.fs" />
+      <Content Include="Fun\Answer.txt" />
       <Compile Include="TypedFun\TypedFun.fs" />
       <Content Include="TypedFun\README.TXT" />
     </ItemGroup>
