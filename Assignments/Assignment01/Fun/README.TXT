@@ -1,6 +1,10 @@
 Compiling and loading the micro-ML evaluator and parser (Fun/README.TXT)
 ------------------------------------------------------------------------
 
+The items A to C are similar to the code found under folder Fun handed
+out last week. In this week we extend with higher order functions,
+items D-E and type interence, item F.
+
 A. Loading the micro-ML evaluator, with abstract syntax only
 
    fsharpi Absyn.fs Fun.fs
@@ -33,11 +37,40 @@ C. Using the lexer, parser and first-order evaluator together:
    run (fromString "5+7");;
    run (fromString "let y = 7 in y + 2 end");;
    run (fromString "let f x = x + 7 in f 2 end");;
-   
-   run (fromString "let sum n = if n=1 then 1 else n+(sum (n-1)) in sum 1000 end");;
-   run (fromString "let pow x = if x = 0 then 1 else 3*(pow (x-1)) in pow 8 end");;
-   run (fromString "let sumPow x = if x = 0 then 1 else (let pow exp = if exp = 0 then 1 else 3*(pow (exp-1)) in pow x end) + (sumPow (x-1))  in sumPow 11 end");;
-   run (fromString "let sumPow x = if x = 0 then 0 else (x*x*x*x*x*x*x*x) + (sumPow (x-1))  in sumPow 10 end");;
-   
 
 
+D. Loading the evaluator for a higher-order functional language (same
+   abstract syntax as the first-order language):
+
+   fsharpi Absyn.fs HigherFun.fs
+
+   open HigherFun;;
+   eval ex1 [];;
+   open Absyn;;
+   run (Letfun ("twice", "f",
+                Letfun ("g", "x", Call (Var "f", Call (Var "f", Var "x")), Var "g"),
+                        Letfun ("mul3", "z", Prim ("*", Var "z", CstI 3),
+                                Call (Call (Var "twice",Var "mul3"),CstI 2))));;
+
+   (The above abstract syntax term corresponds to the concrete syntax
+   term shown in point E below).
+
+
+E. Using the lexer, parser and higher-order evaluator together:
+
+   fsyacc --module FunPar FunPar.fsy
+   fslex --unicode FunLex.fsl
+   fsharpi -r ~/fsharp/FsLexYacc.Runtime.dll Absyn.fs FunPar.fs FunLex.fs Parse.fs HigherFun.fs ParseAndRunHigher.fs
+
+   open ParseAndRunHigher;;
+   run (fromString @"let twice f = let g x = f(f(x)) in g end 
+                     in let mul3 z = z*3 in twice mul3 2 end end");;
+
+F. Using the lexer, parser and polymorphic type inference together:
+
+   fsyacc --module FunPar FunPar.fsy
+   fslex --unicode FunLex.fsl
+   fsharpi -r ~/fsharp/FsLexYacc.Runtime.dll Absyn.fs FunPar.fs FunLex.fs Parse.fs TypeInference.fs ParseAndType.fs
+
+   open ParseAndType;;
+   inferType (fromString "let f x = 1 in f 7 + f false end");;

@@ -6,7 +6,7 @@
 
 module FunLex
 
-open (*Microsoft.*)FSharp.Text.Lexing
+open (*Microsoft.*) FSharp.Text.Lexing
 open FunPar;
 
 let lexemeAsString lexbuf = 
@@ -44,8 +44,6 @@ rule Token = parse
                       SkipComment lexbuf; Token lexbuf }
   | '='             { EQ }
   | "<>"            { NE }
-  | "&&"            { AND } (* 4.5 *)
-  | "||"            { OR } (* 4.5 *)
   | '>'             { GT }
   | '<'             { LT }
   | ">="            { GE }
