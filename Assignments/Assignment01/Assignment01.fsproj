@@ -6,13 +6,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Library.fs"/>
+        <Compile Include="Library.fs" />
     </ItemGroup>
 
     <ItemGroup>
       <Content Include="BPRD-05-ahad-biha-kmsa\ReadMe.txt" />
       <Compile Include="TypedFun\TypedFun.fs" />
       <Content Include="TypedFun\README.TXT" />
+      <Compile Include="Fun\Absyn.fs" />
       <Compile Include="Fun\TypeInference.fs" />
       <None Include="Fun\slowTypeInference.fsx" />
       <Content Include="Fun\README.TXT" />
@@ -30,7 +31,6 @@
       <Compile Include="Fun\Fun.fs" />
       <None Include="Fun\chap6.fsx" />
       <None Include="Fun\chap5.fsx" />
-      <Compile Include="Fun\Absyn.fs" />
     </ItemGroup>
 
 </Project>
