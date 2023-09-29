@@ -34,7 +34,6 @@ let merge (ls : int list * int list) : int list =
   aux ls []
  (* End 5.1 *)
  
-
  // merge ([3;5;12], [2;3;4]);;
  // val it: int list = [2; 3; 3; 4; 5; 12]
   
