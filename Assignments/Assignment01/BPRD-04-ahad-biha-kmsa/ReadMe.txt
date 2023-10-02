@@ -40,6 +40,7 @@ See Absyn.fs and Fun.fs our code is marked by a //Start & //End comment
 
 
 --------------Exercise 4.4--------------
+See FunPar.fsy all added lines are marked with comments
 Answers for running the code given in the exercise:
 
 > run(fromString "let pow x n = if n=0 then 1 else x * pow x (n-1) in pow 3 8 end");;
