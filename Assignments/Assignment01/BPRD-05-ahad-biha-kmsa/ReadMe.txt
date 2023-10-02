@@ -43,9 +43,14 @@ val it: HigherFun.value =
 Closures are needed it doesn't enclose the value of f’s free variable x.
 
 --------------Exercise 6.2--------------
-
+See HigherFun.fs.
+What we changed is marked with comment 
+//#region Exercise 6.2
+//#endregion
 
 --------------Exercise 6.3--------------
+See FunPar.fsy and FunLex.fsl
+The lines we changed are marked with comment //Exercise 6.3
 
 
 --------------Exercise 6.4--------------
