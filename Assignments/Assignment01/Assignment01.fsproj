@@ -17,18 +17,18 @@
       <Compile Include="Fun\TypeInference.fs" />
       <None Include="Fun\slowTypeInference.fsx" />
       <Content Include="Fun\README.TXT" />
+      <Compile Include="Fun\HigherFun.fs" />
+      <Compile Include="Fun\Parse.fs" />
       <Compile Include="Fun\ParseAndType.fs" />
       <Compile Include="Fun\ParseAndRunHigher.fs" />
-      <Compile Include="Fun\ParseAndRun.fs" />
-      <Compile Include="Fun\Parse.fs" />
       <Content Include="Fun\LinkedList.java" />
-      <Compile Include="Fun\HigherFun.fs" />
       <Content Include="Fun\FunPar.fsy" />
       <Compile Include="Fun\FunPar.fsi" />
       <Compile Include="Fun\FunPar.fs" />
       <Content Include="Fun\FunLex.fsl" />
       <Compile Include="Fun\FunLex.fs" />
       <Compile Include="Fun\Fun.fs" />
+      <Compile Include="Fun\ParseAndRun.fs" />
       <None Include="Fun\chap6.fsx" />
       <None Include="Fun\chap5.fsx" />
     </ItemGroup>
