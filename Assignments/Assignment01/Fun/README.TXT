@@ -12,6 +12,8 @@ A. Loading the micro-ML evaluator, with abstract syntax only
    open Absyn;;
    open Fun;;
    let res = run (Prim("+", CstI 5, CstI 7));;
+   val res: int = 12
+
    #q;;
 
 
@@ -20,11 +22,20 @@ B. Generating and compiling the lexer and parser, and loading them:
    fsyacc --module FunPar FunPar.fsy
    fslex --unicode FunLex.fsl
    fsharpi -r ~/fsharp/FsLexYacc.Runtime.dll Absyn.fs FunPar.fs FunLex.fs Parse.fs   
-
+    dotnet fsi -r "C:\Users\sando\OneDrive\Dokumenter\1 Uni\5 semester\ProgrammerSomData\LexAndParse\FsLexYacc.Runtime.dll" Absyn.fs FunPar.fs FunLex.fs Parse.fs   
+    
+    
    open Parse;;
    let e1 = fromString "5+7";;
+        val e1: Absyn.expr = Prim ("+", CstI 5, CstI 7)
+
    let e2 = fromString "let y = 7 in y + 2 end";;
+        val e2: Absyn.expr = Let ("y", CstI 7, Prim ("+", Var "y", CstI 2))
+
    let e3 = fromString "let f x = x + 7 in f 2 end";;
+        val e3: Absyn.expr =
+          Letfun ("f", "x", Prim ("+", Var "x", CstI 7), Call (Var "f", CstI 2))
+
 
 
 C. Using the lexer, parser and first-order evaluator together:
@@ -35,8 +46,14 @@ C. Using the lexer, parser and first-order evaluator together:
 
    open ParseAndRun;;
    run (fromString "5+7");;
+        val it: int = 12
+
    run (fromString "let y = 7 in y + 2 end");;
+        val it: int = 9
+
    run (fromString "let f x = x + 7 in f 2 end");;
+        val it: int = 9
+
 
 
 D. Loading the evaluator for a higher-order functional language (same
@@ -46,11 +63,14 @@ D. Loading the evaluator for a higher-order functional language (same
 
    open HigherFun;;
    eval ex1 [];;
+        val it: value = Int 13
+   
    open Absyn;;
    run (Letfun ("twice", "f",
                 Letfun ("g", "x", Call (Var "f", Call (Var "f", Var "x")), Var "g"),
                         Letfun ("mul3", "z", Prim ("*", Var "z", CstI 3),
                                 Call (Call (Var "twice",Var "mul3"),CstI 2))));;
+        val it: value = Int 18
 
    (The above abstract syntax term corresponds to the concrete syntax
    term shown in point E below).
@@ -66,6 +86,11 @@ E. Using the lexer, parser and higher-order evaluator together:
    run (fromString @"let twice f = let g x = f(f(x)) in g end 
                      in let mul3 z = z*3 in twice mul3 2 end end");;
 
+   run(fromString "fun x -> 2*x");;
+   run(fromString "let add x = fun y -> x+y in add 2 5 end");;
+   run(fromString "let add = fun x -> fun y -> x+y in add 2 5 end");;
+
+
 F. Using the lexer, parser and polymorphic type inference together:
 
    fsyacc --module FunPar FunPar.fsy
@@ -74,3 +99,7 @@ F. Using the lexer, parser and polymorphic type inference together:
 
    open ParseAndType;;
    inferType (fromString "let f x = 1 in f 7 + f false end");;
+        val it: string = "int"
+
+
+

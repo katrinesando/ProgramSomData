@@ -14,6 +14,7 @@
 
 module HigherFun
 
+open System
 open Absyn
 
 (* Environment operations *)
@@ -49,6 +50,7 @@ let rec lookup env x =
 type value = 
   | Int of int
   | Closure of string * string * expr * value env       (* (f, x, fBody, fDeclEnv) *)
+  | Clos of string * expr * value env (* (x,body,declEnv) *) //Exercise 6.2
 
 let rec eval (e : expr) (env : value env) : value =
     match e with
@@ -77,6 +79,11 @@ let rec eval (e : expr) (env : value env) : value =
     | Letfun(f, x, fBody, letBody) -> 
       let bodyEnv = (f, Closure(f, x, fBody, env)) :: env
       eval letBody bodyEnv
+//#region Exercise 6.2
+    | Fun(s, expr) ->
+      let anoEnv = (s, Clos(s, expr, env))::env
+      anoEnv |> List.head |>snd
+//#endregion
     | Call(eFun, eArg) -> 
       let fClosure = eval eFun env  (* Different from Fun.fs - to enable first class functions *)
       match fClosure with
@@ -84,7 +91,16 @@ let rec eval (e : expr) (env : value env) : value =
         let xVal = eval eArg env
         let fBodyEnv = (x, xVal) :: (f, fClosure) :: fDeclEnv
         in eval fBody fBodyEnv
+//#region Exercise 6.2
+      | Clos(f, x, declEnv) ->
+        let xval = eval eArg env
+        let abodyEnv = (f, xval) :: (f,fClosure):: declEnv
+        in eval x abodyEnv
+//#endregion
+
       | _ -> failwith "eval Call: not a function";;
+    
+      
 
 (* Evaluate in empty environment: program must have no free variables: *)
 

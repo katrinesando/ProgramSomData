@@ -11,7 +11,7 @@
 %token <string> NAME
 %token <bool> CSTBOOL
 
-%token ELSE END FALSE IF IN LET NOT THEN TRUE
+%token ELSE END FALSE IF IN LET NOT THEN TRUE ARROW FUN /* Arrow + fun added - exercise 6.3 */
 %token PLUS MINUS TIMES DIV MOD
 %token EQ NE GT LT GE LE
 %token LPAR RPAR 
@@ -55,6 +55,7 @@ Expr:
 AtExpr:
     Const                               { $1                     }
   | NAME                                { Var $1                 }
+  | FUN NAME ARROW Expr                 { Fun($2, $4)            } /* exercise 6.3 */
   | LET NAME EQ Expr IN Expr END        { Let($2, $4, $6)        }
   | LET NAME NAME EQ Expr IN Expr END   { Letfun($2, $3, $5, $7) }
   | LPAR Expr RPAR                      { $2                     }
