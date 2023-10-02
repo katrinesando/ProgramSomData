@@ -19,6 +19,25 @@ open Absyn
 
 (* Environment operations *)
 
+(* Exercise 5.1 - Merge sort in F# *)
+(* Start 5.1 *)
+let merge (ls : int list * int list) : int list =
+  let rec aux (xs, ys) acc =
+    match (xs, ys) with
+    | ([], []) ->  List.rev acc
+    | ([], ls2) -> List.append (List.rev acc) ls2
+    | (ls1, []) -> List.append (List.rev acc) ls1
+    | (x :: ls1, y :: ls2) ->
+      if x < y then
+          aux (ls1, ys) (x :: acc)
+        else
+          aux (xs, ls2) (y :: acc)
+  aux ls []
+ (* End 5.1 *)
+ 
+ // merge ([3;5;12], [2;3;4]);;
+ // val it: int list = [2; 3; 3; 4; 5; 12]
+  
 type 'v env = (string * 'v) list
 
 let rec lookup env x =
