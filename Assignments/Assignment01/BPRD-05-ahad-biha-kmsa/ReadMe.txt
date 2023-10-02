@@ -95,3 +95,33 @@ let f x =
 in f true end
 inferType (fromString "let f x = let g y = if true then y else x in g false end in f true end");;
 val it: string = "bool"
+
+(2)
+bool -> bool 
+inferType (fromString "let f a = if a then true else false in f end");;
+val it: string = "(bool -> bool)"
+
+int -> int
+inferType (fromString "let f x = x + 3 in f end");;
+val it: string = "(int -> int)"
+
+int -> int -> int
+inferType (fromString "let f x = let g y = x + y in g end in f end");;
+val it: string = "(int -> (int -> int))"
+
+’a -> ’b -> ’a
+inferType (fromString "let f x = let g y = x in g end in f end");;
+val it: string = "('h -> ('g -> 'h))"
+
+’a -> ’b -> ’b
+inferType (fromString "let f x = let g y = y in g end in f end");;
+val it: string = "('g -> ('h -> 'h))"
+
+(’a -> ’b) -> (’b -> ’c) -> (’a -> ’c)
+
+
+’a -> ’b
+inferType (fromString "let f x = f x in f end ");;
+val it: string = "('e -> 'f)"
+
+'a
