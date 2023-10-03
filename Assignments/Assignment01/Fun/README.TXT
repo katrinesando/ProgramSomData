@@ -87,6 +87,7 @@ E. Using the lexer, parser and higher-order evaluator together:
                      in let mul3 z = z*3 in twice mul3 2 end end");;
 
    run(fromString "fun x -> 2*x");;
+   run(fromString "let y = 22 in fun z -> z+y end");;
    run(fromString "let add x = fun y -> x+y in add 2 5 end");;
    run(fromString "let add = fun x -> fun y -> x+y in add 2 5 end");;
 

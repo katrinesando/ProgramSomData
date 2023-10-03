@@ -80,9 +80,7 @@ let rec eval (e : expr) (env : value env) : value =
       let bodyEnv = (f, Closure(f, x, fBody, env)) :: env
       eval letBody bodyEnv
 //#region Exercise 6.2
-    | Fun(s, expr) ->
-      let anoEnv = (s, Clos(s, expr, env))::env
-      anoEnv |> List.head |>snd
+    | Fun(s, expr) -> Clos(s, expr, env)
 //#endregion
     | Call(eFun, eArg) -> 
       let fClosure = eval eFun env  (* Different from Fun.fs - to enable first class functions *)

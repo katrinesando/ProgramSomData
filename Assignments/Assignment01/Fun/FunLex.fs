@@ -31,7 +31,7 @@ let keyword s =
     | "not"   -> NOT
     | "then"  -> THEN
     | "true"  -> CSTBOOL true
-    | "fun"  -> FUN 
+    | "fun"  -> FUN (* exercise 6.3 *)
     | _       -> NAME s
 
 # 37 "FunLex.fs"
