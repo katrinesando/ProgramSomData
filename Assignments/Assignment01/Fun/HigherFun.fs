@@ -20,7 +20,7 @@ open Absyn
 (* Environment operations *)
 
 (* Exercise 5.1 - Merge sort in F# *)
-(* Start 5.1 *)
+//#region Exercise 5.1
 let merge (ls : int list * int list) : int list =
   let rec aux (xs, ys) acc =
     match (xs, ys) with
@@ -33,7 +33,7 @@ let merge (ls : int list * int list) : int list =
         else
           aux (xs, ls2) (y :: acc)
   aux ls []
- (* End 5.1 *)
+//#endregion
  
  // merge ([3;5;12], [2;3;4]);;
  // val it: int list = [2; 3; 3; 4; 5; 12]
@@ -120,6 +120,11 @@ let ex2 = Letfun("fac", "x",
                  Call(Var "fac", Var "n"));
 
 (* let fac10 = eval ex2 [("n", Int 10)];; *)
+
+let f a b c = c|> a |>b
+let x a b c = a c |> b
+
+
 
 let ex3 = 
     Letfun("tw", "g", 

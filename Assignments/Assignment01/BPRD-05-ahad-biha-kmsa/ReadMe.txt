@@ -1,5 +1,8 @@
 ﻿--------------Exercise 5.1--------------
-
+See HigherFun.fs and Merge.cs
+What we changed is marked with comment 
+//#region Exercise 5.1
+//#endregion
 
 --------------Exercise 5.7--------------
 
@@ -11,8 +14,6 @@ in add 2 5 end
 run(fromString @"let add x = let f y = x+y in f end
                  in add 2 5 end");;
      val it: HigherFun.value = Int 7
-
-
 
 run (fromString @"let add x = let f y = x+y in f end
                     in let addtwo = add 2
@@ -118,7 +119,7 @@ inferType (fromString "let f x = let g y = y in g end in f end");;
 val it: string = "('g -> ('h -> 'h))"
 
 (’a -> ’b) -> (’b -> ’c) -> (’a -> ’c)
-
+inferType(fromString "let ");;
 
 ’a -> ’b
 inferType (fromString "let f x = f x in f end ");;
