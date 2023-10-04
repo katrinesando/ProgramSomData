@@ -119,10 +119,13 @@ inferType (fromString "let f x = let g y = y in g end in f end");;
 val it: string = "('g -> ('h -> 'h))"
 
 (’a -> ’b) -> (’b -> ’c) -> (’a -> ’c)
-inferType(fromString "let ");;
+inferType (fromString "let f x = let g y = let h z = y (x z) in h end in g end in f end");;
+val it: string = "(('l -> 'k) -> (('k -> 'm) -> ('l -> 'm)))"
 
 ’a -> ’b
 inferType (fromString "let f x = f x in f end ");;
 val it: string = "('e -> 'f)"
 
 'a
+inferType (fromString "let f x = f x in f 1 end");;
+val it: string = "'f"
