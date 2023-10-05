@@ -1,5 +1,5 @@
 ﻿
-public class ExerciseMerge
+public class Merge
 {
     static int[] merge(int[] xs, int[] ys)
     {

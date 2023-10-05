@@ -5,7 +5,10 @@ What we changed is marked with comment
 //#endregion
 
 --------------Exercise 5.7--------------
-
+See TypedFun.fs
+What we changed is marked with comment 
+//#region Exercise 5.7
+//#endregion
 
 --------------Exercise 6.1--------------
 let add x = let f y = x+y in f end
@@ -39,7 +42,7 @@ val it: HigherFun.value =
       ("add",
        Closure
          ("add", "x", Letfun ("f", "y", Prim ("+", Var "x", Var "y"), Var "f"),
-          []))])
+          []))])e
 
 Closures are needed it doesn't enclose the value of f’s free variable x.
 
@@ -51,7 +54,7 @@ What we changed is marked with comment
 
 --------------Exercise 6.3--------------
 See FunPar.fsy and FunLex.fsl
-The lines we changed are marked with comment //Exercise 6.3
+The lines we have changed are marked with comment //Exercise 6.3
 
 
 --------------Exercise 6.4--------------

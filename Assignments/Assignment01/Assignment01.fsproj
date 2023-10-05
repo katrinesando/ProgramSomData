@@ -11,6 +11,12 @@
 
     <ItemGroup>
       <Content Include="BPRD-05-ahad-biha-kmsa\ReadMe.txt" />
+      <Compile Include="BPRD-05-ahad-biha-kmsa\TypedFun.fs" />
+      <Compile Include="BPRD-05-ahad-biha-kmsa\HigherFun.fs" />
+      <Compile Include="BPRD-05-ahad-biha-kmsa\Merge.cs" />
+      <Compile Include="BPRD-05-ahad-biha-kmsa\Absyn.fs" />
+      <Content Include="BPRD-05-ahad-biha-kmsa\FunPar.fsy" />
+      <Content Include="BPRD-05-ahad-biha-kmsa\FunLex.fsl" />
       <Compile Include="TypedFun\TypedFun.fs" />
       <Content Include="TypedFun\README.TXT" />
       <Compile Include="Fun\Absyn.fs" />
