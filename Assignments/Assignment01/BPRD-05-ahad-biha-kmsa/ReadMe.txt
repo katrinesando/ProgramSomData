@@ -59,7 +59,8 @@ The lines we have changed are marked with comment //Exercise 6.3
 
 
 --------------Exercise 6.4--------------
- 
+Rule tree (1) along with explanation can be found under Exercise6.4_1.png
+Rule tree (2) along with explanation can be found under Exercise6.4_2.png
 
 --------------Exercise 6.5--------------
 (1) 
