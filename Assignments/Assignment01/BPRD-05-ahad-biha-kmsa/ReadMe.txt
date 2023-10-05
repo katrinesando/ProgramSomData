@@ -30,7 +30,7 @@ run (fromString "let add x = let f y = x+y in f end
                         end
                     end");;
     val it: HigherFun.value = Int 7
-- Because closures the first x is already filled out in addtwo and there it just takes 5+2 and disregards the 77
+Because closures the first x is already filled out in addtwo and there it just takes 5+2 and disregards the 77
 
 
 run (fromString @"let add x = let f y = x+y in f end
@@ -44,7 +44,8 @@ val it: HigherFun.value =
          ("add", "x", Letfun ("f", "y", Prim ("+", Var "x", Var "y"), Var "f"),
           []))])e
 
-Closures are needed it doesn't enclose the value of f’s free variable x.
+It's missing a closure, since it doesn't enclose the value of f’s free variable x, 
+which makes the function not able to find a result.
 
 --------------Exercise 6.2--------------
 See HigherFun.fs and Absyn.fs
