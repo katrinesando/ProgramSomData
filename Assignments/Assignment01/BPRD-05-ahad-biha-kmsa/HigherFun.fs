@@ -34,9 +34,7 @@ let merge (ls : int list * int list) : int list =
           aux (xs, ls2) (y :: acc)
   aux ls []
 //#endregion
- 
- // merge ([3;5;12], [2;3;4]);;
- // val it: int list = [2; 3; 3; 4; 5; 12]
+
   
 type 'v env = (string * 'v) list
 
@@ -90,10 +88,10 @@ let rec eval (e : expr) (env : value env) : value =
         let fBodyEnv = (x, xVal) :: (f, fClosure) :: fDeclEnv
         in eval fBody fBodyEnv
 //#region Exercise 6.2
-      | Clos(f, x, declEnv) ->
+      | Clos(x, body, declEnv) ->
         let xval = eval eArg env
-        let abodyEnv = (f, xval) :: (f,fClosure):: declEnv
-        in eval x abodyEnv
+        let abodyEnv = (x, xval) :: (x,fClosure):: declEnv
+        in eval body abodyEnv
 //#endregion
 
       | _ -> failwith "eval Call: not a function";;

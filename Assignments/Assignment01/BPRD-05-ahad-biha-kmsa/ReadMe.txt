@@ -30,7 +30,7 @@ run (fromString "let add x = let f y = x+y in f end
                         end
                     end");;
     val it: HigherFun.value = Int 7
-Because closures the first x is already filled out in addtwo and there it just takes 5+2 and disregards the 77
+The parameter x is already given in addtwo. As such, when running addtwo 5 it just takes 5+2 and disregards the 77
 
 
 run (fromString @"let add x = let f y = x+y in f end
@@ -90,10 +90,11 @@ let f x =
 in f 42 end
 inferType (fromString "let f x = let g y = if true then y else x in g false end in f 42 end");;
 System.Exception: type error: bool and int
+....
 Stopped due to error
 Since all branches in an if-then-else expression must return 
 expressions of the same type, y is forced to be of the same type as x. 
-However, f is passed 42 and g is passed false 
+However, f is given 42 and g is given false 
 
 let f x =
     let g y = if true then y else x
