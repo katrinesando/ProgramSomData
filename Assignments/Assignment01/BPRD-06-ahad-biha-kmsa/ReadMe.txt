@@ -1,134 +1,55 @@
-﻿--------------Exercise 5.1--------------
-See HigherFun.fs and Merge.cs
-What we changed is marked with comment 
-//#region Exercise 5.1
-//#endregion
+﻿--------------Exercise 7.1--------------
+   fromFile "ex1.c";;
+        val it: Absyn.program =
+          Prog
+            [Fundec 
+               (None, "main", [(TypI, "n")],
+                Block
+                  [Stmt
+                     (While
+                        (Prim2 (">", Access (AccVar "n"), CstI 0),
+                         Block
+                           [Stmt (Expr (Prim1 ("printi", Access (AccVar "n"))));
+                            Stmt
+                              (Expr
+                                 (Assign
+                                    (AccVar "n",
+                                     Prim2 ("-", Access (AccVar "n"), CstI 1))))]));
+                   Stmt (Expr (Prim1 ("printc", CstI 10)))])]
+                   
+declarations: There is only 1 declaration(FunDec)
+statements: There is 3 statement (while, print, println - stmt)
+types: There is only 1 type (TypI)
+expressions: There is 11 expressions(Prim1, Prim2, Access, AccVar, Assign, CstI)
 
---------------Exercise 5.7--------------
-See TypedFun.fs
-What we changed is marked with comment 
-//#region Exercise 5.7
-//#endregion
-
---------------Exercise 6.1--------------
-let add x = let f y = x+y in f end
-in add 2 5 end
-
-run(fromString @"let add x = let f y = x+y in f end
-                 in add 2 5 end");;
-     val it: HigherFun.value = Int 7
-
-run (fromString @"let add x = let f y = x+y in f end
-                    in let addtwo = add 2
-                        in addtwo 5 end
-                    end");;
-    val it: HigherFun.value = Int 7
-
-run (fromString "let add x = let f y = x+y in f end
-                    in let addtwo = add 2
-                        in let x = 77 in addtwo 5 end
-                        end
-                    end");;
-    val it: HigherFun.value = Int 7
-- Because closures the first x is already filled out in addtwo and there it just takes 5+2 and disregards the 77
-
-
-run (fromString @"let add x = let f y = x+y in f end
-                in add 2 end");;
-val it: HigherFun.value =
-  Closure
-    ("f", "y", Prim ("+", Var "x", Var "y"),
-     [("x", Int 2);
-      ("add",
-       Closure
-         ("add", "x", Letfun ("f", "y", Prim ("+", Var "x", Var "y"), Var "f"),
-          []))])e
-
-Closures are needed it doesn't enclose the value of f’s free variable x.
-
---------------Exercise 6.2--------------
-See HigherFun.fs and Absyn.fs
-What we changed is marked with comment 
-//#region Exercise 6.2
-//#endregion
-
---------------Exercise 6.3--------------
-See FunPar.fsy and FunLex.fsl
-The lines we have changed are marked with comment //Exercise 6.3
+Intepreter:
+   run (fromFile "ex1.c") [17];;
+        17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 
+        val it: Interp.store = map [(0, 0)]
+   run (fromFile "ex11.c") [5];;
+        1 3 5 2 4 
+        1 4 2 5 3 
+        2 4 1 3 5 
+        2 5 3 1 4 
+        3 1 4 2 5
+        3 5 2 4 1
+        4 1 3 5 2
+        4 2 5 3 1 
+        5 2 4 1 3
+        5 3 1 4 2
+        val it: Interp.store =
+          map
+            [(0, 5); (1, 0); (2, 6); (3, -999); (4, 0); (5, 0); (6, 0); (7, 0); (8, 0);
+             ...]
+             
+--------------Exercise 7.2--------------
 
 
---------------Exercise 6.4--------------
+--------------Exercise 7.3--------------
+
+
+--------------Exercise 7.4--------------
  
 
---------------Exercise 6.5--------------
-(1) 
-let f x = 1
-in f f end
-inferType (fromString "let f x = 1 in f f end");;
-val it: string = "int"
+--------------Exercise 7.5--------------
 
-let f g = g g
-in f end
-inferType (fromString "let f g = g g in f end");;
-System.Exception: type error: circularity
-....
-Stopped due to error
-parameters are not polymorphic inside the body of a function
-
-let f x =
-    let g y = y
-    in g false end
-in f 42 end
-inferType (fromString "let f x = let g y = y in g false end in f 42 end");;
-val it: string = "bool"
-
-let f x =
-    let g y = if true then y else x
-    in g false end
-in f 42 end
-inferType (fromString "let f x = let g y = if true then y else x in g false end in f 42 end");;
-System.Exception: type error: bool and int
-Stopped due to error
-Since all branches in an if-then-else expression must return 
-expressions of the same type, y is forced to be of the same type as x. 
-However, f is passed 42 and g is passed false 
-
-let f x =
-    let g y = if true then y else x
-    in g false end
-in f true end
-inferType (fromString "let f x = let g y = if true then y else x in g false end in f true end");;
-val it: string = "bool"
-
-(2)
-bool -> bool 
-inferType (fromString "let f a = if a then true else false in f end");;
-val it: string = "(bool -> bool)"
-
-int -> int
-inferType (fromString "let f x = x + 3 in f end");;
-val it: string = "(int -> int)"
-
-int -> int -> int
-inferType (fromString "let f x = let g y = x + y in g end in f end");;
-val it: string = "(int -> (int -> int))"
-
-’a -> ’b -> ’a
-inferType (fromString "let f x = let g y = x in g end in f end");;
-val it: string = "('h -> ('g -> 'h))"
-
-’a -> ’b -> ’b
-inferType (fromString "let f x = let g y = y in g end in f end");;
-val it: string = "('g -> ('h -> 'h))"
-
-(’a -> ’b) -> (’b -> ’c) -> (’a -> ’c)
-inferType (fromString "let f x = let g y = let h z = y (x z) in h end in g end in f end");;
-val it: string = "(('l -> 'k) -> (('k -> 'm) -> ('l -> 'm)))"
-
-’a -> ’b
-inferType (fromString "let f x = f x in f end ");;
-val it: string = "('e -> 'f)"
-
-'a
-inferType (fromString "let f x = f x in f 1 end");;
-val it: string = "'f"
