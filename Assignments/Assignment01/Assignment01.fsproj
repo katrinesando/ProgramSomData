@@ -96,6 +96,9 @@
       <Compile Include="MicroC\CLex.fs" />
       <Content Include="MicroC\bar" />
       <Content Include="MicroC\a.out" />
+      <ClCompile Include="MicroC\exercise_7_2_i.c" />
+      <ClCompile Include="MicroC\exercise_7_2_ii.c" />
+      <ClCompile Include="MicroC\exercise_7_2_iii.c" />
       <Content Include="Imp\README.TXT" />
       <Content Include="Imp\Parameters.exe" />
       <Compile Include="Imp\Parameters.cs" />
