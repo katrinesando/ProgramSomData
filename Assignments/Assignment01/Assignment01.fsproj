@@ -97,6 +97,9 @@
       <Content Include="MicroC\bar" />
       <Content Include="MicroC\a.out" />
       <ClCompile Include="MicroC\exercise_7_2_i.c" />
+      <ClCompile Include="MicroC\exercise_7_3_i.c" />
+      <ClCompile Include="MicroC\exercise_7_3_ii.c" />
+      <ClCompile Include="MicroC\exercise_7_3_iii.c" />
       <ClCompile Include="MicroC\exercise_7_2_ii.c" />
       <ClCompile Include="MicroC\exercise_7_2_iii.c" />
       <Content Include="Imp\README.TXT" />
