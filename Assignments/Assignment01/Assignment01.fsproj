@@ -12,6 +12,7 @@
     <ItemGroup>
       <Content Include="BPRD-06-ahad-biha-kmsa\ReadMe.txt" />
       <Content Include="MicroC\obj\fsac.cache" />
+      <Compile Include="MicroC\Absyn.fs" />
       <Content Include="MicroC\wrapUpEx01.out" />
       <Content Include="MicroC\wrapUpEx01.exe" />
       <ClCompile Include="MicroC\wrapUpEx01.c" />
@@ -94,7 +95,6 @@
       <Content Include="MicroC\CLex.fsl" />
       <Compile Include="MicroC\CLex.fs" />
       <Content Include="MicroC\bar" />
-      <Compile Include="MicroC\Absyn.fs" />
       <Content Include="MicroC\a.out" />
       <Content Include="Imp\README.TXT" />
       <Content Include="Imp\Parameters.exe" />
