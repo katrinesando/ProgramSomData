@@ -23,10 +23,11 @@
       <Content Include="MicroC\README.TXT" />
       <Content Include="MicroC\prog1" />
       <Content Include="MicroC\prog0" />
+      <Compile Include="MicroC\Interp.fs" />
+      <Compile Include="MicroC\Parse.fs" />
       <Compile Include="MicroC\ParseAndRun.fs" />
       <Compile Include="MicroC\ParseAndContcomp.fs" />
       <Compile Include="MicroC\ParseAndComp.fs" />
-      <Compile Include="MicroC\Parse.fs" />
       <Content Include="MicroC\out" />
       <Compile Include="MicroC\MicroCC.fs" />
       <Content Include="MicroC\microcc.exe" />
@@ -36,7 +37,6 @@
       <Content Include="MicroC\Machine.class" />
       <ClCompile Include="MicroC\machine.c" />
       <Content Include="MicroC\machine" />
-      <Compile Include="MicroC\Interp.fs" />
       <Content Include="MicroC\grammar.txt" />
       <Content Include="MicroC\FSharp.Core.dll" />
       <Content Include="MicroC\ex9.out" />
