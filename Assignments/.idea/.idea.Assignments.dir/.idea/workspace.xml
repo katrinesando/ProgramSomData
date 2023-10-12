@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="4697957b-c584-45ba-bc63-632798cba41c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assignment01/Intro2.fs" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01/Intro2.fs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assignment01/MicroC/exercise_7_2_ii.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assignment01/MicroC/exercise_7_2_iii.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Assignments.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Assignments.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01/Assignment01.fsproj" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01/Assignment01.fsproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment01/MicroC/ex1.c" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment01/MicroC/ex1.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 1
+}]]></component>
   <component name="ProjectId" id="2UkB1YY9n6UeVsU7BaEXvTNkzIx" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -23,7 +38,19 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Assignment06",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\Adamh\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
+      "C:\\Users\\Adamh\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
+      "C:\\Users\\Adamh\\AppData\\Local\\Symbols\\src"
+    ]
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -35,6 +62,7 @@
       <option name="presentableId" value="Default" />
       <updated>1693473489977</updated>
       <workItem from="1693473492884" duration="1097000" />
+      <workItem from="1697099499628" duration="7674000" />
     </task>
     <servers />
   </component>
