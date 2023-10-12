@@ -22,6 +22,26 @@ statements: There is 3 statement (while, print, println - stmt)
 types: There is only 1 type (TypI)
 expressions: There is 11 expressions(Prim1, Prim2, Access, AccVar, Assign, CstI)
 
+Intepreter:
+   run (fromFile "ex1.c") [17];;
+        17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 
+        val it: Interp.store = map [(0, 0)]
+   run (fromFile "ex11.c") [5];;
+        1 3 5 2 4 
+        1 4 2 5 3 
+        2 4 1 3 5 
+        2 5 3 1 4 
+        3 1 4 2 5
+        3 5 2 4 1
+        4 1 3 5 2
+        4 2 5 3 1 
+        5 2 4 1 3
+        5 3 1 4 2
+        val it: Interp.store =
+          map
+            [(0, 5); (1, 0); (2, 6); (3, -999); (4, 0); (5, 0); (6, 0); (7, 0); (8, 0);
+             ...]
+             
 --------------Exercise 7.2--------------
 
 
