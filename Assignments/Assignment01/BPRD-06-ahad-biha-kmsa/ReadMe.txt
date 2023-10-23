@@ -48,6 +48,14 @@ exercise_7_2_i.c
 exercise_7_2_ii.c
 exercise_7_2_iii.c
 
+Examples:
+run (fromFile "exercise_7_2_i.c") [4];;
+run (fromFile "exercise_7_2_ii.c") [4];;
+run (fromFile "exercise_7_2_iii.c") [7];;
+
+### Important to remember here is that all of the solutions give 1 less than they are supposed. For example if the answer is 37,
+ours will give 36. We don't understand why and probably has something to do with Micro-C instead.
+
 --------------Exercise 7.3--------------
 See CLex.fs, CPar.fsy, Interp.fs and Absyn.fs
 All changes are marked with //Exercise 7.3 or /* exercise 7.3 */
@@ -56,6 +64,16 @@ For Micro-C exercise see:
 exercise_7_3_i.c
 exercise_7_3_ii.c
 exercise_7_3_iii.c
+
+Examples:
+run (fromFile "exercise_7_3_i.c") [4];;
+run (fromFile "exercise_7_3_ii.c") [4];;
+run (fromFile "exercise_7_3_iii.c") [7];;
+
+
+### Important to remember here is that all of the solutions give 1 less than they are supposed. For example if the answer is 37,
+ours will give 36. We don't understand why and probably has something to do with Micro-C instead.
+
 
 --------------Exercise 7.4--------------
  See Absyn.fs and Interp.fs
