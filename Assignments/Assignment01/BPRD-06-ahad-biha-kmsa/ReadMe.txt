@@ -1,5 +1,5 @@
 ﻿--------------Exercise 7.1--------------
-   fromFile "ex1.c";;
+fromFile "ex1.c";;
         val it: Absyn.program =
           Prog
             [Fundec 
@@ -43,13 +43,27 @@ Intepreter:
              ...]
              
 --------------Exercise 7.2--------------
-
+For all of the different sub-exercises see
+exercise_7_2_i.c
+exercise_7_2_ii.c
+exercise_7_2_iii.c
 
 --------------Exercise 7.3--------------
+See CLex.fs, CPar.fsy, Interp.fs and Absyn.fs
+All changes are marked with //Exercise 7.3 or /* exercise 7.3 */
 
+For Micro-C exercise see:
+exercise_7_3_i.c
+exercise_7_3_ii.c
+exercise_7_3_iii.c
 
 --------------Exercise 7.4--------------
- 
+ See Absyn.fs and Interp.fs
+ All changes are marked with either //Exercise 7.4 or
+ //start exercise 7.4
+    [code]
+//end exercise 7.4
 
 --------------Exercise 7.5--------------
-
+See CPar.fsy 
+All changes are marked with /* Exercise 7.5 */
