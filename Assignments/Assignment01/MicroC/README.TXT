@@ -145,6 +145,9 @@ B. To compile and use the micro-C compiler
    fsyacc --module CPar CPar.fsy
    fsharpi -r ~/fsharp/FsLexYacc.Runtime.dll Absyn.fs CPar.fs CLex.fs Parse.fs Machine.fs Comp.fs ParseAndComp.fs   
 
+   dotnet fsi -r "C:\Users\sando\OneDrive\Dokumenter\1 Uni\5 semester\ProgrammerSomData\LexAndParse\FsLexYacc.Runtime.dll" Absyn.fs CPar.fs CLex.fs Parse.fs Machine.fs Comp.fs ParseAndComp.fs
+
+
    open ParseAndComp;;
    compileToFile (fromFile "ex11.c") "ex11.out";;
         val it: Machine.instr list =
