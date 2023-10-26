@@ -22,6 +22,7 @@ and expr =
   | Prim2 of string * expr * expr    (* Binary primitive operator   *)
   | Andalso of expr * expr           (* Sequential and              *)
   | Orelse of expr * expr            (* Sequential or               *)
+  | TernaryIf of expr * expr * expr  (* Terniary If *) //Exercise 8.5
   | Call of string * expr list       (* Function call f(...)        *)
   | PreInc of access                 (* Exercise 7.4                *)
   | PreDec of access                 (* Exercise 7.4                *)
@@ -33,7 +34,6 @@ and access =
                                                                    
 and stmt =                                                         
   | If of expr * stmt * stmt         (* Conditional                 *)
-  | TernaryIf of expr * stmt * stmt  (* Terniary If *) //Exercise 8.5
   | While of expr * stmt             (* While loop                  *)
   | For of expr * expr * expr * stmt (* For loop *) //Exercise 7.3
   | Expr of expr                     (* Expression statement   e;   *)
