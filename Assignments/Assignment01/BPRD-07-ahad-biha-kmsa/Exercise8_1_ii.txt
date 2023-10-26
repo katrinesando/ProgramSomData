@@ -1,0 +1,42 @@
+-----------------------ex3.c-------------------------
+compileToFile (fromFile "ex3.c") "ex3.out";;  
+val it: Machine.instr list =
+  [LDARGS; CALL (1, "L1"); STOP; Label "L1"; INCSP 1; GETBP; CSTI 1; ADD;
+   CSTI 0; STI; INCSP -1; GOTO "L3"; Label "L2"; GETBP; CSTI 1; ADD; LDI;
+   PRINTI; INCSP -1; GETBP; CSTI 1; ADD; GETBP; CSTI 1; ADD; LDI; CSTI 1; ADD;
+   STI; INCSP -1; INCSP 0; Label "L3"; GETBP; CSTI 1; ADD; LDI; GETBP; CSTI 0;
+   ADD; LDI; LT; IFNZRO "L2"; INCSP -1; RET 0]
+
+More structured
+  [LDARGS; CALL (1, "L1"); STOP; 
+   Label "L1"; INCSP 1; GETBP; CSTI 1; ADD; CSTI 0; STI; INCSP -1; GOTO "L3";                //initialize i = 0
+   Label "L2"; GETBP; CSTI 1; ADD; LDI; PRINTI; INCSP -1;                                    //while-loop body that prints i and increment with 1
+        GETBP; CSTI 1; ADD; GETBP; CSTI 1; ADD; LDI; CSTI 1; ADD;             
+        STI; INCSP -1; INCSP 0; 
+   Label "L3"; GETBP; CSTI 1; ADD; LDI; GETBP; CSTI 0; ADD; LDI; LT; IFNZRO "L2"; INCSP -1;  //condition in while i<n
+   RET 0]
+
+
+-----------------------ex5.c-------------------------
+compileToFile (fromFile "ex5.c") "ex5.out";;
+val it: Machine.instr list =
+  [LDARGS; CALL (1, "L1"); STOP; Label "L1"; INCSP 1; GETBP; CSTI 1; ADD;
+   GETBP; CSTI 0; ADD; LDI; STI; INCSP -1; INCSP 1; GETBP; CSTI 0; ADD; LDI;
+   GETBP; CSTI 2; ADD; CALL (2, "L2"); INCSP -1; GETBP; CSTI 2; ADD; LDI;
+   PRINTI; INCSP -1; INCSP -1; GETBP; CSTI 1; ADD; LDI; PRINTI; INCSP -1;
+   INCSP -1; RET 0; Label "L2"; GETBP; CSTI 1; ADD; LDI; GETBP; CSTI 0; ADD;
+   LDI; GETBP; CSTI 0; ADD; LDI; MUL; STI; INCSP -1; INCSP 0; RET 1]
+
+More structured
+  [LDARGS; CALL (1, "L1"); STOP; 
+   Label "L1"; INCSP 1; GETBP; CSTI 1; ADD; GETBP; CSTI 0; ADD; LDI; STI; INCSP -1; //init r
+        INCSP 1; GETBP; CSTI 0; ADD; LDI; GETBP; CSTI 2; ADD;                       //init r inside block
+        CALL (2, "L2"); INCSP -1; GETBP; CSTI 2; ADD; LDI;                          //call square function and push answer to stack
+            PRINTI; INCSP -1; INCSP -1; GETBP; CSTI 1; ADD; LDI;                    //print r inside block
+        PRINTI; INCSP -1; INCSP -1;                                                 //print r
+        RET 0; 
+   Label "L2"; GETBP; CSTI 1; ADD; LDI; GETBP; CSTI 0; ADD; LDI; GETBP; CSTI 0; ADD; //square function
+        LDI; MUL; STI; INCSP -1; INCSP 0;                                            //multiplies the 2 top element in stack and pushes to stack
+   RET 1]
+   
+ex5 has a nested scope which is visible by having 2 RET byte codes.
