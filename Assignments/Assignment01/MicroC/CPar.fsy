@@ -14,8 +14,8 @@ let nl = CstI 10
 %token <int> CSTINT CSTBOOL
 %token <string> CSTSTRING NAME
 
-%token CHAR ELSE IF INT NULL PRINT PRINTLN RETURN VOID WHILE FOR /* Added FOR exercise 7.3 */
-%token PLUS MINUS TIMES DIV MOD PPLUS MMINUS /* Added PPLUS and MMINUS for 7.5 */
+%token CHAR ELSE IF INT NULL PRINT PRINTLN RETURN VOID WHILE FOR SWITCH Case /* Added SWITCH and CASE exercise 8.6 */
+%token PLUS MINUS TIMES DIV MOD PPLUS MMINUS 
 %token EQ NE GT LT GE LE 
 %token NOT SEQOR SEQAND
 %token LPAR RPAR LBRACE RBRACE LBRACK RBRACK SEMI COMMA ASSIGN AMP
@@ -29,7 +29,7 @@ let nl = CstI 10
 %left GT LT GE LE
 %left PLUS MINUS
 %left TIMES DIV MOD
-%nonassoc NOT AMP PPLUS MMINUS
+%nonassoc NOT AMP PPLUS MMINUS 
 %nonassoc LBRACK          /* highest precedence  */
 
 %start Main
@@ -100,7 +100,9 @@ StmtM:  /* No unbalanced if-else */
   | Block                               { $1                   }
   | IF LPAR Expr RPAR StmtM ELSE StmtM  { If($3, $5, $7)       }
   | WHILE LPAR Expr RPAR StmtM          { While($3, $5)        }
-  | FOR LPAR Expr SEMI Expr SEMI Expr RPAR Stmt { For($3, $5, $7, $9) } /* Exercise 7.3 */
+  | FOR LPAR Expr SEMI Expr SEMI Expr RPAR Stmt { For($3, $5, $7, $9) } 
+  | SWITCH LPAR Expr RPAR Block                 { Switch($3, $5)    } /* Exercise 8.6 */
+  | CASE CSTINT COLLON Block                    { Case($2, $4)         } /* Exercise 8.6 */
 ;
 
 StmtU:
