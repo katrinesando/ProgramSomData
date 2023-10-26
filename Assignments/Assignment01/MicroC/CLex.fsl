@@ -58,7 +58,7 @@ rule Token = parse
   | '*'             { TIMES } 
   | '/'             { DIV } 
   | '%'             { MOD }                     
-  | '='             { ASSIGN } 
+  | '='             { ASSIGN }  
   | "=="            { EQ } 
   | "!="            { NE }
   | '>'             { GT }
@@ -71,6 +71,8 @@ rule Token = parse
   | "!"             { NOT }                     
   | '('             { LPAR }
   | ')'             { RPAR }
+  | '?'             { QUESTION }
+  | ':'             { COLLON }
   | '{'             { LBRACE }
   | '}'             { RBRACE }
   | '['             { LBRACK }

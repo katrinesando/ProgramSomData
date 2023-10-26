@@ -15,7 +15,7 @@ let nl = CstI 10
 %token <string> CSTSTRING NAME
 
 %token CHAR ELSE IF INT NULL PRINT PRINTLN RETURN VOID WHILE FOR /* Added FOR exercise 7.3 */
-%token PLUS MINUS TIMES DIV MOD PPLUS MMINUS /* Added PPLUS and MMINUS for 7.5 */
+%token PLUS MINUS TIMES DIV MOD PPLUS MMINUS QUESTION COLLON /* Added PPLUS and MMINUS for 7.5, QUESTION and COLLON for 8.5 */
 %token EQ NE GT LT GE LE 
 %token NOT SEQOR SEQAND
 %token LPAR RPAR LBRACE RBRACE LBRACK RBRACK SEMI COMMA ASSIGN AMP
@@ -29,6 +29,7 @@ let nl = CstI 10
 %left GT LT GE LE
 %left PLUS MINUS
 %left TIMES DIV MOD
+%right QUESTION COLLON /* Exercise 8.5 */
 %nonassoc NOT AMP PPLUS MMINUS
 %nonassoc LBRACK          /* highest precedence  */
 
@@ -104,6 +105,7 @@ StmtM:  /* No unbalanced if-else */
 ;
 
 StmtU:
+    LPAR Expr QUESTION StmtM COLLON StmtU RPAR { TernaryIf($2, $4, $6)} /* Exercise 8.5 */  
     IF LPAR Expr RPAR StmtM ELSE StmtU  { If($3, $5, $7)       }
   | IF LPAR Expr RPAR Stmt              { If($3, $5, Block []) }
   | WHILE LPAR Expr RPAR StmtU          { While($3, $5)        }
