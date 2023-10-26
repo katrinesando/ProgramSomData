@@ -10,14 +10,16 @@
     print sump; 
 }
 
-
 void arrsum(int n, int arr[], int *sump) {
     int i;
+    int temp;
+    temp = 0;
     i = 0;
     while (i < n) {
-        *sump = *sump + arr[i]; 
+        temp = temp + arr[i];
         i = i + 1;
     }
+    *sump = temp;
 }
 
 

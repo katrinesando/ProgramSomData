@@ -6,6 +6,7 @@
     arr[3] = 8;
     
     int sump;
+    sump = 0;
     arrsum(n, arr, &sump);
     print sump; 
 }

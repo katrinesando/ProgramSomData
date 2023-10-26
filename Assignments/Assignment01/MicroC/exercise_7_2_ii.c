@@ -13,6 +13,7 @@ void squares(int n, int arr[]) {
     }
 
     int squaresum;
+    squaresum = 0;
     arrsum(n, arr, &squaresum);
     print squaresum;
 }
