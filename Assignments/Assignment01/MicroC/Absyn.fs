@@ -33,6 +33,7 @@ and access =
                                                                    
 and stmt =                                                         
   | If of expr * stmt * stmt         (* Conditional                 *)
+  | TernaryIf of expr * stmt * stmt  (* Terniary If *) //Exercise 8.5
   | While of expr * stmt             (* While loop                  *)
   | For of expr * expr * expr * stmt (* For loop *) //Exercise 7.3
   | Expr of expr                     (* Expression statement   e;   *)

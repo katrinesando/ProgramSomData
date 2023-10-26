@@ -122,7 +122,14 @@ let rec cStmt stmt (varEnv : varEnv) (funEnv : funEnv) : instr list =
       cExpr e varEnv funEnv @ [IFZERO labelse] 
       @ cStmt stmt1 varEnv funEnv @ [GOTO labend]
       @ [Label labelse] @ cStmt stmt2 varEnv funEnv
-      @ [Label labend]           
+      @ [Label labend]
+    | TernaryIf(e, stmt1, stmt2) ->
+       let labelse = newLabel()
+       let labend = newLabel()
+       cExpr e varEnv funEnv @ [IFZERO labelse] 
+      @ cStmt stmt1 varEnv funEnv @ [INCSP 1; GETSP; STI] @ [GOTO labend]
+      @ [Label labelse] @ cStmt stmt2 varEnv funEnv @ [INCSP 1; GETSP; STI]
+      @ [Label labend]
     | While(e, body) ->
       let labbegin = newLabel()
       let labtest  = newLabel()
@@ -169,7 +176,7 @@ and cExpr (e : expr) (varEnv : varEnv) (funEnv : funEnv) : instr list =
     | CstI i         -> [CSTI i]
     | Addr acc       -> cAccess acc varEnv funEnv
     | PreDec acc        -> cAccess acc varEnv funEnv @ [DUP; LDI; CSTI 1; SUB; STI]
-    | PreInc acc       -> cAccess acc varEnv funEnv @ [DUP; LDI; CSTI 1; SUB; STI]
+    | PreInc acc       -> cAccess acc varEnv funEnv @ [DUP; LDI; CSTI 1; ADD; STI]
     | Prim1(ope, e1) ->
       cExpr e1 varEnv funEnv
       @ (match ope with
