@@ -10,17 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="BPRD-06-ahad-biha-kmsa\ReadMe.txt" />
-      <ClCompile Include="BPRD-06-ahad-biha-kmsa\exercise_7_2_i.c" />
-      <ClCompile Include="BPRD-06-ahad-biha-kmsa\exercise_7_3_i.c" />
-      <ClCompile Include="BPRD-06-ahad-biha-kmsa\exercise_7_3_ii.c" />
-      <ClCompile Include="BPRD-06-ahad-biha-kmsa\exercise_7_3_iii.c" />
-      <ClCompile Include="BPRD-06-ahad-biha-kmsa\exercise_7_2_ii.c" />
-      <ClCompile Include="BPRD-06-ahad-biha-kmsa\exercise_7_2_iii.c" />
-      <Compile Include="BPRD-06-ahad-biha-kmsa\Absyn.fs" />
-      <Compile Include="BPRD-06-ahad-biha-kmsa\Interp.fs" />
-      <Content Include="BPRD-06-ahad-biha-kmsa\CLex.fsl" />
-      <Content Include="BPRD-06-ahad-biha-kmsa\CPar.fsy" />
+      <Content Include="BPRD-07-ahad-biha-kmsa\ReadMe.txt" />
       <Content Include="MicroC\obj\fsac.cache" />
       <Compile Include="MicroC\Absyn.fs" />
       <Content Include="MicroC\wrapUpEx01.out" />
