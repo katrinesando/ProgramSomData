@@ -133,7 +133,7 @@ let rec exec stmt (locEnv : locEnv) (gloEnv : gloEnv) (store : store) : store =
               if v<>0 then loop (exec body locEnv gloEnv store2)
                       else store2
       loop store
-    | For(iinit, range, iinc, body) -> (* Start - Exercise 7.3 *)
+    | For(iinit, range, iinc, body) ->
         let (i, store1) = eval iinit locEnv gloEnv store
         let rec loop store2 =
             let (v, store3) = eval range locEnv gloEnv store2
@@ -143,7 +143,7 @@ let rec exec stmt (locEnv : locEnv) (gloEnv : gloEnv) (store : store) : store =
                 loop store5
                 else
                     store3
-        loop store1    (* End - Exercise 7.3 *)
+        loop store1
     | Expr e -> 
       let (_, store1) = eval e locEnv gloEnv store 
       store1 
@@ -152,7 +152,22 @@ let rec exec stmt (locEnv : locEnv) (gloEnv : gloEnv) (store : store) : store =
           match ss with 
           | [ ] -> store
           | s1::sr -> loop sr (stmtordec s1 locEnv gloEnv store)
-      loop stmts (locEnv, store) 
+      loop stmts (locEnv, store)
+//Start - Exercise 8.6
+    | Switch(condition, body) ->
+        let (expr,store1) = eval condition locEnv gloEnv store
+        match body with
+            |[] -> store1
+            |Case(i,cbody)::cs ->
+                    let rec stepDown lst =
+                        if expr =  i
+                        then
+                            exec cbody locEnv gloEnv store1
+                        else
+                           stepDown cs
+                    stepDown body
+            | _ -> failwith "only case allowed"
+//End - Exercise 8.6
     | Return _ -> failwith "return not implemented"
 
 and stmtordec stmtordec locEnv gloEnv store = 
