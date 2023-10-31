@@ -46,7 +46,7 @@ and stmt =
 and stmtordec =                                                    
   | Dec of typ * string              (* Local variable declaration  *)
   | Stmt of stmt                     (* A statement                 *)
-  | Case of int*stmt                 (*Exercise 8.6*)
+  | Case of int*stmt                 (* Exercise 8.6*)
 
 and topdec = 
   | Fundec of typ option * string * (typ * string) list * stmt

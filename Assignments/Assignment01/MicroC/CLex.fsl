@@ -74,7 +74,7 @@ rule Token = parse
   | '('             { LPAR }
   | ')'             { RPAR }
   | '?'             { QUESTION } (* Exercise 8.5 *)
-  | ':'             { COLON }
+  | ':'             { COLON } (* Exercise 8.3-8.6*)
   | '{'             { LBRACE }
   | '}'             { RBRACE }
   | '['             { LBRACK }
