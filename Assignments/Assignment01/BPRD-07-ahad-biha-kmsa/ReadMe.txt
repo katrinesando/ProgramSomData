@@ -30,7 +30,7 @@ compile "ex11";;
 
 (ii)
 See Exercise8_1_ii.txt for the Micro-C bytecode, and ex3Trace.txt for the machine trace from 
-the java file, where the relavent lines are commented.
+the java file, where the relevant lines are commented.
 
 First the argument(4) is pushed to the stack.
 The bp gets updated and stores the value of i(0) at index 3.
@@ -38,8 +38,12 @@ It then goes to the condition of the while-loop and checks what is stored in the
 If it matches it ends, and if it doesn't it goes to inside the body of the while-loop.
 Here it prints i, as well as update the index 3 with the incremented value, and checks the condition again.
 
-
 --------------Exercise 8.3--------------
+See Comp.fs and exercise_8_3.c for solution
+Our changed are marked with
+//Start - Exercise 8.3
+...
+//End - Exercises 8.3
 
 --------------Exercise 8.4--------------
 compileToFile (fromFile "ex8.c") "ex8.out";;
@@ -81,9 +85,17 @@ There are many labels, each one resulting from different logical operations.
 There are also chains of GOTO operations, the could be eliminated.
 It seems like a few of the labels "house" code that does nothing eg. L4 & L5 
 --------------Exercise 8.5--------------
+See Absyn.fs, Comp.fs, CLex.fsl, and CPar.fsy for solution
+An example of a Ternary can be seen in exercise_8_5.c
+Our changes are marked with //Exercise 8.5 or
+//Start - Exercise 8.5
+...
+//End - Exercises 8.5
+
 
 --------------Exercise 8.6--------------
-See Absyn.fs, CLex.fsl, CPar.fsy and Interp.fs for solution
+See Absyn.fs, CLex.fsl, CPar.fsy and Interp.fs for solution.
+An example of a switch case can be seen in exercise_8_6.c
 Our changed are marked with either //Exercise 8.6 or
 //Start - Exercise 8.6
 ...
