@@ -109,9 +109,8 @@ StmtM:  /* No unbalanced if-else */
                                                                                         
 ;
 
-StmtU:
-    LPAR Expr QUESTION StmtM COLON StmtU RPAR { TernaryIf($2, $4, $6)} /* Exercise 8.5 */  
-  | IF LPAR Expr RPAR StmtM ELSE StmtU  { If($3, $5, $7)       }
+StmtU: 
+   IF LPAR Expr RPAR StmtM ELSE StmtU  { If($3, $5, $7)       }
   | IF LPAR Expr RPAR Stmt              { If($3, $5, Block []) }
   | WHILE LPAR Expr RPAR StmtU          { While($3, $5)        }
 ;
@@ -121,6 +120,7 @@ Expr:
   | ExprNotAccess                       { $1                  }
   | PPLUS Access                        { PreInc $2           } /* Exercise 7.5 */
   | MMINUS Access                       { PreDec $2           } /* Exercise 7.5 */
+  | LPAR Expr QUESTION Expr COLON Expr RPAR { TernaryIf($2, $4, $6)} /* Exercise 8.5 */ 
 ;
 
 ExprNotAccess:

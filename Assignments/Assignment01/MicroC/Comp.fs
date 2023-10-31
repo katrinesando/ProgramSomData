@@ -170,13 +170,13 @@ and cExpr (e : expr) (varEnv : varEnv) (funEnv : funEnv) : instr list =
     | Addr acc       -> cAccess acc varEnv funEnv
     | PreDec acc        -> cAccess acc varEnv funEnv @ [DUP; LDI; CSTI 1; SUB; STI]
     | PreInc acc       -> cAccess acc varEnv funEnv @ [DUP; LDI; CSTI 1; ADD; STI]
-    | TernaryIf(e1, e2, e3) ->
+    | TernaryIf(e1, e2, e3) -> //Start exercise 8.5
        let labelse = newLabel()
        let labend = newLabel()
        cExpr e1 varEnv funEnv @ [IFZERO labelse] 
-      @ cExpr e2 varEnv funEnv @ [INCSP 1; GETSP; STI] @ [GOTO labend]
-      @ [Label labelse] @ cExpr e3 varEnv funEnv @ [INCSP 1; GETSP; STI]
-      @ [Label labend]
+      @ cExpr e2 varEnv funEnv @ [GOTO labend]
+      @ [Label labelse] @ cExpr e3 varEnv funEnv 
+      @ [Label labend] //End exercise 8.5
     | Prim1(ope, e1) ->
       cExpr e1 varEnv funEnv
       @ (match ope with

@@ -22,7 +22,7 @@ and expr =
   | Prim2 of string * expr * expr    (* Binary primitive operator   *)
   | Andalso of expr * expr           (* Sequential and              *)
   | Orelse of expr * expr            (* Sequential or               *)
-  | TernaryIf of expr * expr * expr  (* Terniary If *) //Exercise 8.5
+  | TernaryIf of expr * expr * expr  (* Exercise 8.5                *)
   | Call of string * expr list       (* Function call f(...)        *)
   | PreInc of access                 (* Exercise 7.4                *)
   | PreDec of access                 (* Exercise 7.4                *)

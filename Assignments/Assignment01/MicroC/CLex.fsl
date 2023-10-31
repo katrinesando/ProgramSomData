@@ -73,7 +73,7 @@ rule Token = parse
   | "!"             { NOT }                     
   | '('             { LPAR }
   | ')'             { RPAR }
-  | '?'             { QUESTION }
+  | '?'             { QUESTION } (* Exercise 8.5 *)
   | ':'             { COLON }
   | '{'             { LBRACE }
   | '}'             { RBRACE }
