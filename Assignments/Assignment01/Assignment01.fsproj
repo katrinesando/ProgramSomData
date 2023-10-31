@@ -42,6 +42,7 @@
       <Content Include="MicroC\grammar.txt" />
       <Content Include="MicroC\FSharp.Core.dll" />
       <ClCompile Include="MicroC\exercise_8_3.c" />
+      <ClCompile Include="MicroC\exercise_8_5.c" />
       <Content Include="MicroC\ex9.out" />
       <ClCompile Include="MicroC\ex9.c" />
       <Content Include="MicroC\ex8.out" />

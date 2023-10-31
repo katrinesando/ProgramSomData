@@ -30,8 +30,8 @@ let keyword s =
     | "void"    -> VOID 
     | "while"   -> WHILE   
     | "for"     -> FOR
-    | "switch"  -> SWITCH (* Exercise 8.6 *)
-    | "case"    -> CASE   (* Exercise 8.6 *)
+    | "switch"  -> SWITCH (*Exercise 8.6*)
+    | "case"    -> CASE   (*Exercise 8.6*)
     | _         -> NAME s
  
 let cEscape s = 
@@ -317,6 +317,7 @@ and Token  lexbuf =
   | 25 -> ( 
 # 77 "CLex.fsl"
                                      COLON 
+
 # 320 "CLex.fs"
           )
   | 26 -> ( 
