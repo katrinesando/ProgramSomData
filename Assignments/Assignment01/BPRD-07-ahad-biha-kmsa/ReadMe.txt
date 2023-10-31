@@ -87,4 +87,4 @@ See Absyn.fs, CLex.fsl, CPar.fsy and Interp.fs for solution
 Our changed are marked with either //Exercise 8.6 or
 //Start - Exercise 8.6
 ...
-//End - Exericsses 8.6
+//End - Exercises 8.6

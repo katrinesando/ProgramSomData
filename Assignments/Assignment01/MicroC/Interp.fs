@@ -181,12 +181,14 @@ and eval e locEnv gloEnv store : int * store =
   match e with
     | Access acc     -> let (loc, store1) = access acc locEnv gloEnv store
                         (getSto store1 loc, store1)
-    | PreInc acc     -> let (loc, sto) = access acc locEnv gloEnv store //start exercise 7.4
+//Start - Exercise 7.4
+    | PreInc acc     -> let (loc, sto) = access acc locEnv gloEnv store 
                         let (res,sto2) = eval (Prim2 ("+" ,CstI (getSto sto loc), CstI 1)) locEnv gloEnv sto
                         (res, setSto sto2 loc res)
     | PreDec acc     -> let (loc, sto) = access acc locEnv gloEnv store
                         let (res,sto2) = eval (Prim2 ("-" ,CstI (getSto sto loc), CstI 1)) locEnv gloEnv sto
-                        (res, setSto sto2 loc res)                  //end exercise 7.4
+                        (res, setSto sto2 loc res)
+//End - Exercise 7.4
     | Assign(acc, e) -> let (loc, store1) = access acc locEnv gloEnv store
                         let (res, store2) = eval e locEnv gloEnv store1
                         (res, setSto store2 loc res) 
