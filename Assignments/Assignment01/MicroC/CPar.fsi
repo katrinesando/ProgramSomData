@@ -28,6 +28,8 @@ type token =
   | MOD
   | PPLUS
   | MMINUS
+  | QUESTION
+  | COLON
   | CHAR
   | ELSE
   | IF
@@ -39,6 +41,8 @@ type token =
   | VOID
   | WHILE
   | FOR
+  | SWITCH
+  | CASE
   | CSTSTRING of (string)
   | NAME of (string)
   | CSTINT of (int)
@@ -71,6 +75,8 @@ type tokenId =
     | TOKEN_MOD
     | TOKEN_PPLUS
     | TOKEN_MMINUS
+    | TOKEN_QUESTION
+    | TOKEN_COLON
     | TOKEN_CHAR
     | TOKEN_ELSE
     | TOKEN_IF
@@ -82,6 +88,8 @@ type tokenId =
     | TOKEN_VOID
     | TOKEN_WHILE
     | TOKEN_FOR
+    | TOKEN_SWITCH
+    | TOKEN_CASE
     | TOKEN_CSTSTRING
     | TOKEN_NAME
     | TOKEN_CSTINT

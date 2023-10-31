@@ -156,17 +156,17 @@ let rec exec stmt (locEnv : locEnv) (gloEnv : gloEnv) (store : store) : store =
 //Start - Exercise 8.6
     | Switch(condition, body) ->
         let (expr,store1) = eval condition locEnv gloEnv store
-        match body with
-            |[] -> store1
-            |Case(i,cbody)::cs ->
-                    let rec stepDown lst =
+        let rec stepDown lst =
+            match lst with
+                |[] -> store1
+                |Case(i,cbody)::cs ->
                         if expr =  i
                         then
                             exec cbody locEnv gloEnv store1
                         else
                            stepDown cs
-                    stepDown body
-            | _ -> failwith "only case allowed"
+                | _ -> failwith "only case allowed"
+        stepDown body
 //End - Exercise 8.6
     | Return _ -> failwith "return not implemented"
 
@@ -174,7 +174,7 @@ and stmtordec stmtordec locEnv gloEnv store =
     match stmtordec with 
     | Stmt stmt   -> (locEnv, exec stmt locEnv gloEnv store)
     | Dec(typ, x) -> allocate (typ, x) locEnv store
-
+    | _            -> failwith "not implemented"
 (* Evaluating micro-C expressions *)
 
 and eval e locEnv gloEnv store : int * store = 

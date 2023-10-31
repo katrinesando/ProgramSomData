@@ -12,6 +12,9 @@ A. Generating and compiling the lexer and parser for micro-C, and
    dotnet fsi -r "C:\Users\sando\OneDrive\Dokumenter\1 Uni\5 semester\ProgrammerSomData\LexAndParse\FsLexYacc.Runtime.dll" Absyn.fs CPar.fs CLex.fs Parse.fs Interp.fs ParseAndRun.fs
 
    open ParseAndRun;;
+   run (fromFile "exercise_8_6.c") [1];;
+   
+   
    fromFile "ex1.c";;
         val it: Absyn.program =
           Prog
