@@ -13,6 +13,13 @@
       <Content Include="BPRD-07-ahad-biha-kmsa\ReadMe.txt" />
       <Content Include="BPRD-07-ahad-biha-kmsa\ex3Trace.txt" />
       <Content Include="BPRD-07-ahad-biha-kmsa\Exercise8_1_ii.txt" />
+      <Compile Include="BPRD-07-ahad-biha-kmsa\Absyn.fs" />
+      <Compile Include="BPRD-07-ahad-biha-kmsa\Interp.fs" />
+      <ClCompile Include="BPRD-07-ahad-biha-kmsa\exercise_8_3.c" />
+      <ClCompile Include="BPRD-07-ahad-biha-kmsa\exercise_8_5.c" />
+      <Content Include="BPRD-07-ahad-biha-kmsa\CPar.fsy" />
+      <Compile Include="BPRD-07-ahad-biha-kmsa\Comp.fs" />
+      <Content Include="BPRD-07-ahad-biha-kmsa\CLex.fsl" />
       <Content Include="MicroC\obj\fsac.cache" />
       <Compile Include="MicroC\Absyn.fs" />
       <Content Include="MicroC\wrapUpEx01.out" />
