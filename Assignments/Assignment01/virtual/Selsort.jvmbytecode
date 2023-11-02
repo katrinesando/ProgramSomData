@@ -3,33 +3,34 @@
     flags: (0x0009) ACC_PUBLIC, ACC_STATIC
     Code:
       stack=4, locals=4, args_size=1
-         0: iconst_0
-         1: istore_1
-         2: iload_1
-         3: aload_0
-         4: arraylength
-         5: if_icmpge     57
-         8: iload_1
-         9: istore_2
-        10: iload_1
-        11: iconst_1
-        12: iadd
-        13: istore_3
-        14: iload_3
-        15: aload_0
-        16: arraylength
-        17: if_icmpge     37
-        20: aload_0
-        21: iload_3
-        22: iaload
-        23: aload_0
-        24: iload_2
-        25: iaload
-        26: if_icmpge     31
-        29: iload_3
-        30: istore_2
-        31: iinc          3, 1
-        34: goto          14
+         0: iconst_0 //Push 0 onto stack
+         1: istore_1 //Pop stack top into variable at index 1 
+         2: iload_1 //Push variable from index 1
+         3: aload_0 //Push reference from variable at index 0
+         4: arraylength //Push array length onto stack
+         5: if_icmpge     57 //Compare <= jump to 57 aka. ret
+         8: iload_1 //Push variable from index 1, loads i
+         9: istore_2 //Pop into variable at index 2
+        10: iload_1 //Push variable from index 1, loads i
+        11: iconst_1 //Push 1 onto stack
+        12: iadd //Push result of add onto stack, i + 1
+        13: istore_3 //Pop into variable at index 3
+        14: iload_3 //Push variable from index 3, loads j
+        15: aload_0 //Push reference onto stack
+        16: arraylength //Push array length to stack
+        17: if_icmpge     37 //j <= arr.Length jump to 37
+        20: aload_0 //Push refernce to arr onto stack
+        21: iload_3 //Push variable from index 3, loads j
+        22: iaload //arr[j]
+        23: aload_0 //Push refernce to arr onto stack
+        24: iload_2 //Push variable from index 2, loads least
+        25: iaload //arr[least]
+        26: if_icmpge     31 //arr[j]<=arr[least], if true jump to 31
+        29: iload_3 //Push variable from index 3, loads j
+        30: istore_2 //least = j
+        31: iinc          3, 1 //j++
+        34: goto          14 //Restart inner loop
+        //Lines from 37: to 50: correspond to line 26 in Selsort.java
         37: aload_0
         38: iload_1
         39: iaload
@@ -44,8 +45,8 @@
         48: iload_2
         49: iload_3
         50: iastore
-        51: iinc          1, 1
-        54: goto          2
+        51: iinc          1, 1 //i++
+        54: goto          2 //Restart outer loop
         57: return
       LineNumberTable:
         line 21: 0
