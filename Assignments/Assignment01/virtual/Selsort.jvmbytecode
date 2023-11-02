@@ -48,25 +48,3 @@
         51: iinc          1, 1 //i++
         54: goto          2 //Restart outer loop
         57: return
-      LineNumberTable:
-        line 21: 0
-        line 22: 8
-        line 23: 10
-        line 24: 20
-        line 25: 29
-        line 23: 31
-        line 26: 37
-        line 21: 51
-        line 28: 57
-      StackMapTable: number_of_entries = 5
-        frame_type = 252 /* append */
-          offset_delta = 2
-          locals = [ int ]
-        frame_type = 253 /* append */
-          offset_delta = 11
-          locals = [ int, int ]
-        frame_type = 16 /* same */
-        frame_type = 250 /* chop */
-          offset_delta = 5
-        frame_type = 249 /* chop */
-          offset_delta = 19
