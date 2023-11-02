@@ -6,10 +6,11 @@
 	// Code size 57 (0x39)
 	.maxstack 4
 	.locals init (
-		int32	V_0,
-		int32	V_1,
-		int32	V_2,
-		int32	V_3)
+		int32	V_0,//int i
+		int32	V_1, //least
+		int32	V_2,//tmp
+		int32	V_3) //j
+		
 	IL_0000:  ldc.i4.0 //push constant int 0
 	IL_0001:  stloc.0 //Pop stack into local variable at index 0.
 	IL_0002:  br.s IL_0032 //Unconditional jump to IL_0032 
