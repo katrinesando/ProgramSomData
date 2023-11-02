@@ -3,7 +3,7 @@
     flags: (0x0009) ACC_PUBLIC, ACC_STATIC
     Code:
       stack=4, locals=4, args_size=1
-         0: iconst_0
+         0: iconst_0 
          1: istore_1
          2: iload_1
          3: aload_0
