@@ -11,6 +11,9 @@
 
     <ItemGroup>
       <Content Include="BPRD-08-ahad-biha-kmsa\ReadMe.txt" />
+      <Content Include="BPRD-08-ahad-biha-kmsa\QueueWithMistake.java" />
+      <Content Include="BPRD-08-ahad-biha-kmsa\Selsort.jvmbytecode" />
+      <Content Include="BPRD-08-ahad-biha-kmsa\Selsort.il" />
       <Content Include="virtual\Timer.class" />
       <Content Include="virtual\StringConcatSpeed.java" />
       <Compile Include="virtual\StringConcatSpeed.cs" />
