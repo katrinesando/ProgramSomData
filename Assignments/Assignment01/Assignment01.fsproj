@@ -10,45 +10,19 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="BPRD-08-ahad-biha-kmsa\ReadMe.txt" />
-      <Content Include="BPRD-08-ahad-biha-kmsa\QueueWithMistake.java" />
-      <Content Include="BPRD-08-ahad-biha-kmsa\Selsort.jvmbytecode" />
-      <Content Include="BPRD-08-ahad-biha-kmsa\Selsort.il" />
-      <Content Include="virtual\Timer.class" />
-      <Content Include="virtual\StringConcatSpeed.java" />
-      <Compile Include="virtual\StringConcatSpeed.cs" />
-      <Content Include="virtual\StringConcatSpeed.class" />
-      <Content Include="virtual\Square.pdb" />
-      <Content Include="virtual\Square.exe.mdb" />
-      <Content Include="virtual\Square.exe" />
-      <Compile Include="virtual\Square.cs" />
-      <Content Include="virtual\Selsort.jvmbytecode" />
-      <Content Include="virtual\Selsort.java" />
-      <Content Include="virtual\Selsort.il" />
-      <Content Include="virtual\Selsort.exe" />
-      <Compile Include="virtual\Selsort.cs" />
-      <Content Include="virtual\Selsort.class" />
-      <Content Include="virtual\README.TXT" />
-      <Content Include="virtual\QueueWithMistake.java" />
-      <Content Include="virtual\Node.class" />
-      <Content Include="virtual\LinkedList.class" />
-      <Content Include="virtual\InOut.class" />
-      <Content Include="virtual\ex6java.java" />
-      <Content Include="virtual\ex6java.class" />
-      <Content Include="virtual\ex13.pdb" />
-      <Content Include="virtual\ex13.jvmbytecode" />
-      <Content Include="virtual\ex13.java" />
-      <Content Include="virtual\ex13.gmcs2012.il" />
-      <Content Include="virtual\ex13.exe.mdb" />
-      <Content Include="virtual\ex13.exe" />
-      <Content Include="virtual\ex13.csc2012.il" />
-      <Compile Include="virtual\ex13.cs" />
-      <Content Include="virtual\ex13.class" />
-      <Content Include="virtual\CircularQueue.jvmbytecode" />
-      <Content Include="virtual\CircularQueue.java" />
-      <Content Include="virtual\CircularQueue.il" />
-      <Compile Include="virtual\CircularQueue.cs" />
-      <Content Include="virtual\CircularQueue.class" />
+      <Content Include="BPRD-09-ahad-biha-kmsa\ReadMe.txt" />
+      <ClCompile Include="Cont\testlongjmp.c" />
+      <Content Include="Cont\testlongjmp" />
+      <Content Include="Cont\README.TXT" />
+      <Compile Include="Cont\Icon.fs" />
+      <Content Include="Cont\Factorial.java" />
+      <Content Include="Cont\Factorial.class" />
+      <Content Include="Cont\Factorial$2.class" />
+      <Content Include="Cont\Factorial$1.class" />
+      <Compile Include="Cont\Contimp.fs" />
+      <Compile Include="Cont\Contfun.fs" />
+      <Content Include="Cont\Cont.fsproj" />
+      <Content Include="Cont\Cont.class" />
     </ItemGroup>
 
 </Project>
