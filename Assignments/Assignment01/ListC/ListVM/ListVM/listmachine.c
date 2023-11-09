@@ -471,10 +471,18 @@ void initheap() {
   freelist = &heap[0];
 }
 
-void markPhase(word s[], word sp) {
+void markPhase(word s[], word sp)
+{
   printf("marking ...\n");
-  // TODO: Actually mark something
+  for(int i = 0; i < sp; i++)
+  { //Go sequentially through the stack
+    if(s[i] != 0) //Mark non-nil references
+      {
+      //Mark dat bay boi
+      }
+  }
 }
+
 
 void sweepPhase() {
   printf("sweeping ...\n");
