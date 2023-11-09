@@ -22,10 +22,16 @@ Checks whether "v" is an int. If it is untag it and finally compare it to zero.
 If the comparison is true, then jump to somewhere in the program. If it returns false then simply increment the stack pointer  
  
 CONS:
-Allocate memory in the heap, 
+Allocate a new cons object "p" in the heap. Then put the top two values of the stack into cons.
+It then saves the pointer to "p" on the position before the stack pointer. The stack pointer is then decremented. 
+ 
+CAR:
+From the top of the stack, it loads a pointer into the variable "p", which points to a CONS on the heap. 
+Checks whether "p" is a NIL pointer, then it pushes the value from the pointer onto the stack.
 
-CAR
-SETCAR
+SETCAR:
+From the top of the stack, it takes some value into "v" and then decrements the stack pointer.
+Then it takes a pointer to a CONS from the top of the stack. and saves "v" into the first element of CONS.
 
 (ii)
 
