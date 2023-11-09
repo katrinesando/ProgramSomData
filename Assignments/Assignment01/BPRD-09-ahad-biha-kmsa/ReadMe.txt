@@ -35,9 +35,28 @@ Then it takes a pointer to a CONS from the top of the stack. and saves "v" into 
 
 (ii)
 
+Length:
+It bit shifts "hdr" to the right by 2, which removes the two garbage collection bits "gg" and bitwise ands with 0x003FFFF.
+Which ends up giving all the length bits "nnnnn..." in the header.
+
+Color:
+Color gets the two garbage collection bits "gg" by doing a bitwise and with "11".
+
+Paint:
+We bitwise and with ~3 aka. "11", which will always return the bits "00", then the bits are set based on the color variable.
+
 (iii)
 
+The abstract machine calls allocate whenever we enter the CONS case in execcode. This is when we create a pointer on the stack to a CONS objects in the heap.
+When the allocate attempt goes wrong ie. no memory was allocated. We collect aka. garbage collect the object.
+These are currently the only times the Mutator and Collector interact.  
+
 (iv)
+
+Whenever there is no memory available on the heap.
+ 
 --------------Exercise 10.2--------------
+
+
 
 --------------Exercise 10.3--------------
