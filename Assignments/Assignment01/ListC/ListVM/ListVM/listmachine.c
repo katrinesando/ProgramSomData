@@ -499,23 +499,23 @@ void markPhase(word s[], word sp)
 
 void sweepPhase() {
   printf("sweeping ...\n");
-  int i = 0;
-  while(i<HEAPSIZE)
+  word* heapPtr = heap;
+  while(heapPtr<afterHeap)
   {
-    switch (Color(heap[i]))
+    switch (Color(*heapPtr))
     {
     case White:
-      heap[i] = mkheader(0,Length(heap[i]), Blue);
-      heap[i+1] = &freelist;
-      freelist =  &heap[i];
+      heapPtr[0] = mkheader(0,Length(*heapPtr), Blue);
+      heapPtr[1] = &freelist;
+      freelist =  &heapPtr[0];
       break;
     case Black:
-      Paint(heap[i],White);
+      heapPtr[0] = Paint(heapPtr[0],White);
       break;
     default:
       break;
     }
-    i+=Length(heap[i]);
+    heapPtr+=(Length(heapPtr[0])+1);
   }
 }
 
