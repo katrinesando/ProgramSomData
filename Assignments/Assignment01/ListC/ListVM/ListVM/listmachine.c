@@ -102,7 +102,7 @@ created when allocating all but the last word of a free block.
 
 // Get the user time in milli-seconds
 int getUserTime();
-
+int count;
 // Read instructions from a file, return array of instructions
 word* readfile(char* filename);
 
@@ -470,23 +470,53 @@ void initheap() {
   heap[1] = (word)0;
   freelist = &heap[0];
 }
-
+void mark(word* block) //header
+{
+  if(!IsInt(*block))
+  {
+    word cons = block[2]; //+2*sizeof(word)
+    Paint(*block,Black);
+    mark(&cons);
+    count++;
+  }
+}
 void markPhase(word s[], word sp)
 {
   printf("marking ...\n");
+  count = 0;
+  
   for(int i = 0; i < sp; i++)
   { //Go sequentially through the stack
-    if(s[i] != 0) //Mark non-nil references
+    if(!IsInt(s[i]) && s[i] != NIL) //Mark non-nil references - checks if it's a pointer
       {
-      //Mark dat bay boi
+        //Mark dat bay boi
+        mark(&s[i]);
       }
   }
+  printf("marked %d\n", count);
 }
 
 
 void sweepPhase() {
   printf("sweeping ...\n");
-  // TODO: Actually sweep
+  int i = 0;
+  while(i<HEAPSIZE)
+  {
+    switch (Color(heap[i]))
+    {
+    case White:
+      heap[i] = mkheader(0,Length(heap[i]), Blue);
+      heap[i+1] = &freelist;
+      freelist =  &heap[i];
+      break;
+    case Black:
+      Paint(heap[i],White);
+      break;
+    default:
+      break;
+    }
+    i+=Length(heap[i]);
+  }
 }
 
 void collect(word s[], word sp) {
