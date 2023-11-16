@@ -56,7 +56,11 @@ These are currently the only times the Mutator and Collector interact.
 Whenever there is no memory available on the heap.
  
 --------------Exercise 10.2--------------
-
+See listmachine.c for solution (mark(), markPhase(), sweepPhase())
+All changed code is marked with:
+//Start - Exercise 10.2
+....
+//End - Exercise 10.2
 
 
 --------------Exercise 10.3--------------

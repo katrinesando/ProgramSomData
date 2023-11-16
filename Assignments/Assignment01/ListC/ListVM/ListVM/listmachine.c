@@ -470,9 +470,10 @@ void initheap() {
   heap[1] = (word)0;
   freelist = &heap[0];
 }
+//Start - Exercise 10.2
 void mark(word* block) //header
 {
-  if(!IsInt(*block))
+  if(!IsInt(*block) && inHeap(block))
   {
     word cons = block[2]; //+2*sizeof(word)
     *block = Paint(*block,Black);
@@ -484,7 +485,7 @@ void markPhase(word s[], word sp)
   printf("marking ...\n");
   for(int i = 0; i < sp; i++)
   { //Go sequentially through the stack
-    if(!IsInt(s[i]) && s[i] != NIL) //Mark non-nil references - checks if it's a pointer
+    if(!IsInt(s[i])) // && s[i] != NIL //Mark non-nil references - checks if it's a pointer
       {
         //Mark dat bay boi
         mark(&s[i]);
@@ -515,6 +516,7 @@ void sweepPhase() {
     heapPtr+=(Length(heapPtr[0])+1);
   }
 }
+//End - Exercise 10.2
 
 void collect(word s[], word sp) {
   markPhase(s, sp);
