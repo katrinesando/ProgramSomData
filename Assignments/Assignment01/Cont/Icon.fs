@@ -141,3 +141,7 @@ let ex9 = Every(Write(Prim("<", CstI 4, FromTo(1, 10))));
 
 //11.8 ii
 let over50 = Write(Prim("<",CstI 50, Prim("*",CstI 7, FromTo(1,10))))
+(*
+run over50;;
+56 val it: value = Int 56
+*)
