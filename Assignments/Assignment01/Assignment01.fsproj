@@ -11,6 +11,7 @@
 
     <ItemGroup>
       <Content Include="BPRD-10-ahad-biha-kmsa\ReadMe.txt" />
+      <Compile Include="BPRD-10-ahad-biha-kmsa\Exercise_11_1.fs" />
       <ClCompile Include="Cont\testlongjmp.c" />
       <Content Include="Cont\testlongjmp" />
       <Content Include="Cont\README.TXT" />
