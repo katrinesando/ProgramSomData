@@ -475,7 +475,7 @@ void mark(word* block) //header
   if(!IsInt(*block))
   {
     word cons = block[2]; //+2*sizeof(word)
-    Paint(*block,Black);
+    *block = Paint(*block,Black);
     mark(&cons);
     count++;
   }
