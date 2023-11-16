@@ -11,6 +11,7 @@
 
     <ItemGroup>
       <Content Include="BPRD-09-ahad-biha-kmsa\ReadMe.txt" />
+      <ClCompile Include="BPRD-09-ahad-biha-kmsa\listmachine.c" />
       <ClCompile Include="ListC\ListVM\ListVM\utils_win.c" />
       <ClCompile Include="ListC\ListVM\ListVM\utils_unix.c" />
       <Content Include="ListC\ListVM\ListVM\ListVM.vcxproj.user" />

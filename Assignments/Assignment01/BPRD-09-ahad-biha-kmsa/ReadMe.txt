@@ -64,3 +64,4 @@ All changed code is marked with:
 
 
 --------------Exercise 10.3--------------
+We didnt do this :(( mark-sweep be stoopid
