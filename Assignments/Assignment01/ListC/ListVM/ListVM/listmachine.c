@@ -506,22 +506,24 @@ void sweepPhase() {
       if (Color(*prev) == Blue)
       {
         prev[0] = mkheader(0,Length(*prev)+Length(*heapPtr)+1, Blue);
+        heapPtr[0] = mkheader(0,Length(*heapPtr), Blue);
+        freelist =  &prev[0];
       }
       else
       {
         heapPtr[0] = mkheader(0,Length(*heapPtr), Blue);
         heapPtr[1] = freelist;
         freelist =  &heapPtr[0];
+        prev = heapPtr;
       }
-      
       break;
     case Black:
       heapPtr[0] = Paint(heapPtr[0],White);
+      prev = heapPtr;
       break;
     default:
       break;
     }
-    prev = heapPtr;
     heapPtr+=(Length(heapPtr[0])+1);
   }
 }
