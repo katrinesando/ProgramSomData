@@ -23,6 +23,7 @@
       <Compile Include="Cont\Contfun.fs" />
       <Content Include="Cont\Cont.fsproj" />
       <Content Include="Cont\Cont.class" />
+      <Compile Include="Cont\Exercise_11_3.fs" />
       <None Include="fac.fsx" />
       <Compile Include="Factorial.cs" />
       <Content Include="Factorial2.java" />
