@@ -14,13 +14,14 @@ word* readfile(char* filename) {
   int capacity = 1, size = 0;
   word *program = (word*)malloc(sizeof(word)*capacity);
   FILE *inp;
-  fopen_s(&inp, filename, "r");
+  inp = fopen(filename, "r");
+  //fopen_s(&inp, filename, "r");
   if (inp == NULL) {
     printf("File %s not found.\n", filename);
     exit(-1);
   }
   int instr;
-  while (fscanf_s(inp, "%d", &instr) == 1) {
+  while (fscanf(inp, "%d", &instr) == 1) {
     if (size >= capacity) {
       word* buffer = (word*)malloc(sizeof(word) * 2 * capacity);
       int i;
