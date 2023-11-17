@@ -162,10 +162,14 @@ let ex9 = Every(Write(Prim("<", CstI 4, FromTo(1, 10))));
 
 //11.8 ii
 let over50 = Write(Prim("<",CstI 50, Prim("*",CstI 7, FromTo(1,10))))
+(*
+run over50;;
+56 val it: value = Int 56
+*)
 
 //11.8 iii
 let exsqrt = Every(Write (Prim1("square", FromTo(3,6))));
 let exeven= Every(Write (Prim1("even", FromTo(1,7))))
-
 //11.8 iv
 let exmulti = Every(Write (Prim1("multiples", FromTo(3,4))))
+
