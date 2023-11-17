@@ -223,7 +223,8 @@ let rundeep n = eval1 exdeep [("n", Int n)];
 
 (* Example: throw an exception inside expression *)
 
-let ex3 = Prim("*", CstI 11, Raise (Exn "outahere"));
+let ex3 = Prim("*", CstI 11, Raise (Exn "outahere"))
+let exSqrt = Prim1("square", CstI 11, Raise (Exn "outahere"));
 
 (* Example: throw an exception and catch it *)
 
