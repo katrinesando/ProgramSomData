@@ -9,8 +9,9 @@ let rec revc xs c =
 (*11.2 ii
 revc [1;2;3] (fun v -> v @ v);;
 val it: int list = [3; 2; 1; 3; 2; 1]
+As can be seen, the returned value is the reversed list twice. 
 
-11.2 ii*)
+11.2 iii*)
 let rec revi xs acc =
     match xs with
     |[] -> acc

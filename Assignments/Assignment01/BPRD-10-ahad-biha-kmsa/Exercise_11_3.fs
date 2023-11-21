@@ -1,5 +1,6 @@
 ﻿module Assignment01.Cont.Exercise_11_3
 
+//Exercise 11.3
 let rec prod xs =
     match xs with
     | [] -> 1
@@ -20,6 +21,7 @@ val it: int = 8
 
 *)
 
+//Exercise 11.4
 let rec prodi xs c =
     match xs with
     | [] -> c 1

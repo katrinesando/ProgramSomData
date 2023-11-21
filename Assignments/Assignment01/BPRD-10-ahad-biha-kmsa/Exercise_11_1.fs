@@ -2,9 +2,9 @@
 
 //Exercise 11.1
 let rec len xs =
-match xs with
-| [] -> 0
-| x::xr -> 1 + len xr;;
+    match xs with
+    | [] -> 0
+    | x::xr -> 1 + len xr;;
 
 //(i)
 let rec lenc xs con =
@@ -25,9 +25,9 @@ let rec leni xs acc =
     | x::xr -> leni xr (acc+1);;
 
 (*
- Where lenc make use of iteration, leni make use of tail-recursion.
+ Where lenc make use of a continuation, leni makes use of an accumulating parameter.
  This means that leni occurs when a statement in a function calls itself repeatly.
- Meanwhile the continuation(iteration) occours when a loop repeatedly executes until the controlling condition becomes false.
+ Meanwhile the continuation(iteration) occurs when a loop repeatedly executes until the controlling condition becomes false.
 *)
 
 //Testing
