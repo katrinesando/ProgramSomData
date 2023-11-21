@@ -14,4 +14,4 @@ val it: int list = [3; 2; 1; 3; 2; 1]
 let rec revi xs acc =
     match xs with
     |[] -> acc
-    |x ::xr -> revi xr acc @ [x]
+    |x ::xr -> revi xr (acc @ [x])
