@@ -20,7 +20,7 @@
         expression e has no result.
  *)
 
-module Icon
+//module Icon
 
 (* Micro-Icon abstract syntax *)
 
@@ -137,3 +137,16 @@ let ex8 = Write(Prim("<", CstI 4, FromTo(1, 10)));
 
 // every(write(4 < (1 to 10)))
 let ex9 = Every(Write(Prim("<", CstI 4, FromTo(1, 10))));
+
+//Exercise 11.8 (i)
+// run (Seq(Seq(Write(CstI 3), Write(CstI 5)),Seq(Write(CstI 7), Write(CstI 9))));;
+
+//run (Every(Write(Prim("+",Prim("*",FromTo(1,4),CstI 2),CstI 1))))
+//3 5 7 9 val it: value = Int 0
+
+//run (Seq(Seq(Write(CstI 21),Write(CstI 22)),(Seq(Seq(Write(CstI 31), Write(CstI 32)),Seq(Write(CstI 41), Write(CstI 42))))));;
+//21 22 31 32 41 42 val it: value = Int 42
+
+
+
+
