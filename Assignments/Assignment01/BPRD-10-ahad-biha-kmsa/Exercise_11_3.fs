@@ -27,7 +27,7 @@ let rec prodi xs c =
         if x = 0 then
             c 0
             else
-                prodc xr (fun r -> c (x * r))
+                prodc xr (fun r -> c (x * r));;
     
    
 

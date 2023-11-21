@@ -31,6 +31,7 @@ type expr =
   | Write of expr
   | If of expr * expr * expr
   | Prim of string * expr * expr 
+  | Prim1 of string * expr //Exercise 11.8(iii)
   | And of expr * expr
   | Or  of expr * expr
   | Seq of expr * expr
@@ -88,6 +89,26 @@ let rec eval (e : expr) (cont : cont) (econt : econt) =
               | _ -> Str "unknown prim2")
               econt1)
           econt
+//Start - Exercise 11.8 (iii)
+    | Prim1 (ope, e) ->
+        eval e (fun v1 -> fun econt1 ->
+            match (ope, v1) with
+            | "square", Int i1 ->
+                cont (Int(i1*i1)) econt1
+            | "even", Int i1 ->
+                if i1%2 = 0 then
+                    cont (Int i1) econt1
+                else
+                    econt1()
+            | "multiples", Int i1 ->
+                let rec infinite res = //infinite loop to produce multiples
+                    if i1 = res then
+                        cont (Int i1) (fun () -> infinite (res+i1)) //handles first case to make sure it gets written
+                    else
+                        cont (Int (res+i1)) (fun () -> infinite (res+i1))
+                infinite i1
+            ) econt
+//End - Exercise 11.8 (iii)
     | And(e1, e2) -> 
       eval e1 (fun _ -> fun econt1 -> eval e2 cont econt1) econt
     | Or(e1, e2) -> 
@@ -139,14 +160,26 @@ let ex8 = Write(Prim("<", CstI 4, FromTo(1, 10)));
 let ex9 = Every(Write(Prim("<", CstI 4, FromTo(1, 10))));
 
 //Exercise 11.8 (i)
-// run (Seq(Seq(Write(CstI 3), Write(CstI 5)),Seq(Write(CstI 7), Write(CstI 9))));;
+run (Seq(Seq(Write(CstI 3), Write(CstI 5)),Seq(Write(CstI 7), Write(CstI 9))));;
+//3 5 7 9 val it: value = 9
 
-//run (Every(Write(Prim("+",Prim("*",FromTo(1,4),CstI 2),CstI 1))))
+run (Every(Write(Prim("+",Prim("*",FromTo(1,4),CstI 2),CstI 1))))
 //3 5 7 9 val it: value = Int 0
 
-//run (Seq(Seq(Write(CstI 21),Write(CstI 22)),(Seq(Seq(Write(CstI 31), Write(CstI 32)),Seq(Write(CstI 41), Write(CstI 42))))));;
+run (Seq(Seq(Write(CstI 21),Write(CstI 22)),(Seq(Seq(Write(CstI 31), Write(CstI 32)),Seq(Write(CstI 41), Write(CstI 42))))));;
 //21 22 31 32 41 42 val it: value = Int 42
 
+//11.8 ii
+let over50 = Write(Prim("<",CstI 50, Prim("*",CstI 7, FromTo(1,10))))
+(*
+run over50;;
+56 val it: value = Int 56
+*)
 
+//11.8 iii
+let exsqrt = Every(Write (Prim1("square", FromTo(3,6))));
+let exeven= Every(Write (Prim1("even", FromTo(1,7))))
+//11.8 iv
+let exmulti = Every(Write (Prim1("multiples", FromTo(3,4))))
 
 
