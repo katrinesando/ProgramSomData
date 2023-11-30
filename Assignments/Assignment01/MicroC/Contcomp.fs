@@ -108,8 +108,11 @@ let rec addCST i C =
                                else CSTI i :: C
     | (0, IFZERO lab :: C1) -> addIFZERO lab C1
     | (_, IFZERO lab :: C1) -> addIFZERO lab C1
-    | (0, IFNZRO lab :: C1) -> C1
-    | (_, IFNZRO lab :: C1) -> addGOTO lab C1
+    | (i, CSTI j :: (EQ :: C1)) -> if i = j then addCST 1 C1 else addCST 0 C1 //Exercise 12.2
+    | (i, CSTI j:: (LT :: C1)) -> if i < j then addCST 1 C1 else addCST 0 C1
+    | (i, CSTI j ::(SWAP :: (LT :: C1))) -> if j < i then addCST 1 C1 else addCST 0 C1 //End 12.2
+    | (0, IFZERO lab :: C1) -> addGOTO lab C1
+    | (_, IFZERO lab :: C1) -> C1
     | _                     -> CSTI i :: C
      
      
