@@ -97,6 +97,7 @@
       <Compile Include="MicroC\CLex.fs" />
       <Content Include="MicroC\bar" />
       <Content Include="MicroC\a.out" />
+      <ClCompile Include="MicroC\comparisons.c" />
     </ItemGroup>
 
 </Project>
