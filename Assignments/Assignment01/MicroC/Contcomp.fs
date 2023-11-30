@@ -22,6 +22,7 @@
 module Contcomp
 
 open System.IO
+open System.Reflection.Emit
 open Absyn
 open Machine
 
@@ -69,11 +70,18 @@ let rec deadcode C = (* Remove all code until next label *)
     | []              -> []
     | Label lab :: _  -> C
     | _         :: C1 -> deadcode C1
-
+//Start - Exercise 12.1
+let addIFZERO lab3 C =
+    let C1 = deadcode C
+    match C with
+    | GOTO lab1 :: Label lab2 :: C2 ->
+        if lab2 = lab3 then  (IFNZRO lab3 :: Label lab3 :: C2)  else C1
+    | _ -> C1                                            
+//End - Exercise 12.1
 let addNOT C =
     match C with
     | NOT        :: C1 -> C1
-    | IFZERO lab :: C1 -> IFNZRO lab :: C1 
+    | IFZERO lab :: C1 -> addIFZERO lab C1
     | IFNZRO lab :: C1 -> IFZERO lab :: C1 
     | _                -> NOT :: C
 
@@ -98,12 +106,15 @@ let rec addCST i C =
     | (0, EQ         :: C1) -> addNOT C1
     | (_, INCSP m    :: C1) -> if m < 0 then addINCSP (m+1) C1
                                else CSTI i :: C
-    | (0, IFZERO lab :: C1) -> addGOTO lab C1
-    | (_, IFZERO lab :: C1) -> C1
+    | (0, IFZERO lab :: C1) -> addIFZERO lab C1
+    | (_, IFZERO lab :: C1) -> addIFZERO lab C1
     | (0, IFNZRO lab :: C1) -> C1
     | (_, IFNZRO lab :: C1) -> addGOTO lab C1
     | _                     -> CSTI i :: C
-            
+     
+     
+     
+
 (* ------------------------------------------------------------------- *)
 
 (* Simple environment operations *)
@@ -188,8 +199,8 @@ let rec cStmt stmt (varEnv : varEnv) (funEnv : funEnv) (C : instr list) : instr 
     | If(e, stmt1, stmt2) -> 
       let (jumpend, C1) = makeJump C
       let (labelse, C2) = addLabel (cStmt stmt2 varEnv funEnv C1)
-      cExpr e varEnv funEnv (IFZERO labelse 
-       :: cStmt stmt1 varEnv funEnv (addJump jumpend C2))
+      cExpr e varEnv funEnv (addIFZERO labelse 
+       (cStmt stmt1 varEnv funEnv (addJump jumpend C2)))
     | While(e, body) ->
       let labbegin = newLabel()
       let (jumptest, C1) = 

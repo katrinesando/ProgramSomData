@@ -10,12 +10,12 @@ A. Generating and compiling the lexer and parser for micro-C, and
    fslex --unicode CLex.fsl
    fsyacc --module CPar CPar.fsy
    fsharpi -r ~/fsharp/FsLexYacc.Runtime.dll Absyn.fs CPar.fs CLex.fs Parse.fs Interp.fs ParseAndRun.fs
-
+dotnet fsi -r "C:\Users\sando\OneDrive\Dokumenter\1 Uni\5 semester\ProgrammerSomData\LexAndParse\FsLexYacc.Runtime.dll" Absyn.fs CPar.fs CLex.fs Parse.fs Machine.fs Comp.fs ParseAndComp.fs
    open ParseAndRun;;
    fromFile "ex1.c";;
    run (fromFile "ex1.c") [17];;
    run (fromFile "ex5.c");;
-   run (fromFile "ex11.c") [8];;
+   run (fromFile "ex16.c") [8];;
 
 
 B. To compile and use the micro-C compiler
@@ -25,18 +25,18 @@ B. To compile and use the micro-C compiler
    fsharpi -r ~/fsharp/FsLexYacc.Runtime.dll Absyn.fs CPar.fs CLex.fs Parse.fs Machine.fs Comp.fs ParseAndComp.fs   
 
    open ParseAndComp;;
-   compileToFile (fromFile "ex11.c") "ex11.out";;
+   compileToFile (fromFile "ex16.c") "ex16.out";;
    compile "ex11";;
    #q;;
 
 The Java stack machine:
 
    javac Machine.java
-   java Machine ex11.out 8
+   java Machine ex16.out 8
 
 The C stack machine
    gcc machine.c
-   ./a.out ex11.out 8
+   ./a.out ex16.out 8
 
 C. To compile and use the backwards (continuation-based) micro-C compiler:
 
@@ -45,7 +45,7 @@ C. To compile and use the backwards (continuation-based) micro-C compiler:
    fsharpi -r ~/fsharp/FsLexYacc.Runtime.dll Absyn.fs CPar.fs CLex.fs Parse.fs Machine.fs Contcomp.fs ParseAndContcomp.fs   
 
    open ParseAndContcomp;;
-   contCompileToFile (fromFile "ex11.c") "ex11.out";;
+   contCompileToFile (fromFile "ex16.c") "ex16.out";;
    compile "ex11";;
    #q;;
 
