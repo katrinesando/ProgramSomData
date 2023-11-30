@@ -90,12 +90,12 @@
       <Compile Include="MicroC\CPar.fsi" />
       <Compile Include="MicroC\CPar.fs" />
       <Content Include="MicroC\CPar.exe" />
+      <Compile Include="MicroC\Absyn.fs" />
       <Compile Include="MicroC\Contcomp.fs" />
       <Compile Include="MicroC\Comp.fs" />
       <Content Include="MicroC\CLex.fsl" />
       <Compile Include="MicroC\CLex.fs" />
       <Content Include="MicroC\bar" />
-      <Compile Include="MicroC\Absyn.fs" />
       <Content Include="MicroC\a.out" />
     </ItemGroup>
 
