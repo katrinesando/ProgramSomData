@@ -2,8 +2,7 @@
 
     
 --------------Exercise 12.2--------------
-
-
+See Contcomp.fs marked by //Exercise 12.2
 
 --------------Exercise 12.3--------------
 
