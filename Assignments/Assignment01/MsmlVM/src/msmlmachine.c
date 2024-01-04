@@ -213,6 +213,8 @@ int silent=0; /* Glocal boolean value to run the interpreter in silent mode. Def
 #define THROW 40
 #define PUSHHDLR 41
 #define POPHDLR 42
+#define PRINTP 43
+#define PAIR 44
 
 // We check for stack overflow in execcode inbetween execution of two byte code instructions.
 // Such instructions can increate the stack arbitraily, e.g., INCSP. The STACKSAFETYSIZE
@@ -251,6 +253,8 @@ void printInstruction(word p[], word pc) {
                break;
   case RET:    printf("RET " WORD_FMT, p[pc+1]); break;
   case PRINTI: printf("PRINTI"); break;
+  case PRINTP: printf("PRINTP"); break;
+  case PAIR: printf("PAIR"); break; 
   case PRINTB: printf("PRINTB"); break;
   case PRINTC: printf("PRINTC"); break;
   case PRINTL: printf("PRINTL"); break;    
@@ -545,6 +549,8 @@ int execcode(word p[], word s[], word iargs[], int iargc, int /* boolean */ trac
       sp = sp-p[pc]; bp = Untag(s[--sp]); pc = Untag(s[--sp]); 
       s[sp] = res; 
     } break; 
+    case PRINTP:
+      printP(s[sp]); break; 
     case PRINTI:
       printI(s[sp]); break;
     case PRINTB:
@@ -563,6 +569,15 @@ int execcode(word p[], word s[], word iargs[], int iargc, int /* boolean */ trac
       return 0;
     case NIL:    
       s[sp+1] = NILVALUE; sp++; break;
+    /* Exercise */
+    case PAIR: 
+      word* p = allocate(CONSTAG, 2, s, sp);
+      p[1] = (word)s[sp-1];
+      p[2] = (word)s[sp];
+      s[sp-1] = (word)p;
+      sp--;
+      break;
+     /* Exercise */
     case CONS: {
       word* p = allocate(CONSTAG, 2, s, sp); 
       p[1] = (word)s[sp-1];

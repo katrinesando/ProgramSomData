@@ -181,6 +181,8 @@ let rec cExpr (kind: int->var) (varEnv : varEnv) (e : expr<typ>) (C: instr list)
        | ("hd",_)    -> CAR :: C  
        | ("tl",_)    ->  CDR :: C
        | ("isnil",_) -> NIL :: EQ :: C
+       | ("fst",_) -> CAR :: C
+       | ("snd",_) -> CDR :: C
        | _ -> failwith ("cExpr.Prim1 "+ope+" not implemented"))
   | Prim2(ope, e1, e2,_) ->
     cExpr kind varEnv e1
@@ -274,6 +276,7 @@ let rec cExpr (kind: int->var) (varEnv : varEnv) (e : expr<typ>) (C: instr list)
         (cExpr kind (incVarIdx varEnv 3 (* Handler size = 3 *)) e1 
           (POPHDLR :: GOTO labend :: Label labexn ::
             (cExpr kind varEnv e2 (Label labend :: C)))))
+| Pair(e1,e2,_) -> cExpr kind varEnv e1 (cExpr kind (incVarIdx varEnv 1) e2 (PAIR :: C)) (* Exercise *)
 
 (* genValdecEnv returns two environments (nextEnv,vdEnv):
      - nextEnv is the environment to be used by the following vd or body

@@ -58,7 +58,9 @@ type instr =
   | HEAPLDI of int                     (* LDI operation on heap allocated object *)
   | THROW                              (* Search for exception handle and execute affiliated exception code *)
   | PUSHHDLR of label                  (* Push exception handler on stack.                                  *)
-  | POPHDLR                            (* Pop exception handler                                             *)
+  | POPHDLR                            (* Pop exception handler   *)
+  | PRINTP
+  | PAIR                                          
 
 (* Generate new distinct labels *)
 
@@ -128,6 +130,8 @@ let CODEPRINTL    = 39;
 let CODETHROW     = 40;
 let CODEPUSHHDLR  = 41;
 let CODEPOPHDLR   = 42;
+let CODEPRINTP    = 43;
+let CODEPAIR      = 44;
 
 (* Bytecode emission, first pass: build environment that maps 
    each label to an integer address in the bytecode.
@@ -161,6 +165,7 @@ let sizeInst instr =
   | TCALL(m,lab)   -> 3
   | RET m          -> 2
   | PRINTI         -> 1
+  | PRINTP         -> 1
   | PRINTB         -> 1
   | PRINTC         -> 1
   | PRINTL         -> 1    
@@ -168,6 +173,7 @@ let sizeInst instr =
   | STOP           -> 1
   | NIL            -> 1
   | CONS           -> 1
+  | PAIR           -> 1
   | CAR            -> 1
   | CDR            -> 1
   | SETCAR         -> 1
@@ -233,6 +239,8 @@ let emitints getlab instr ints =
   | THROW          -> CODETHROW :: ints
   | PUSHHDLR lab   -> CODEPUSHHDLR :: getlab lab :: ints
   | POPHDLR        -> CODEPOPHDLR :: ints
+  | PRINTP         -> CODEPRINTP :: ints
+  | PAIR           -> CODEPAIR :: ints
 
 let ppInst (addr,strs) instr =
   let indent s = (addr + sizeInst instr,"  " + (addr.ToString().PadLeft(4)) + ": " + s :: strs)
@@ -263,6 +271,7 @@ let ppInst (addr,strs) instr =
   | TCALL(m,lab)   -> indent ("TCALL " + m.ToString() + " " + lab)
   | RET m          -> indent ("RET " + m.ToString())
   | PRINTI         -> indent "PRINTI"
+  | PRINTP         -> indent "PRINTP"
   | PRINTB         -> indent "PRINTB"
   | PRINTC         -> indent "PRINTC"
   | PRINTL         -> indent "PRINTL"  
@@ -270,6 +279,7 @@ let ppInst (addr,strs) instr =
   | STOP           -> indent "STOP"  
   | NIL            -> indent "NIL"   
   | CONS           -> indent "CONS"  
+  | PAIR           -> indent "PAIR"
   | CAR            -> indent "CAR"   
   | CDR            -> indent "CDR"   
   | SETCAR         -> indent "SETCAR"

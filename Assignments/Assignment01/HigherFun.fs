@@ -45,6 +45,7 @@ type value =
   | Int of int
   | List of value list
   | ClosureRef of closure ref
+  | PairV of value * value
 and closure =
   Closure of string * string * expr<typ> * value env       (* (f, x, fBody, fDeclEnv) *)
 
@@ -59,6 +60,8 @@ let rec ppValue = function
   | ClosureRef closRef ->
     match !closRef with
     | Closure(f,x,fBody,fDeclEnv) -> "Closure("+f+","+x+"fBody" + "," + "fDeclEnv" + ")"
+  | PairV(v1, v2) -> "Pair(v1:" + v1 + ",v2: " + v2 ")"
+
 
 let ppEnv fPP env =
   let ppEntry (s,v) acc = sprintf "  %s |-> %s \n" s (fPP v) + acc
@@ -99,6 +102,12 @@ let rec evalExpr (env : value env) (e : expr<typ>)
                                       | List [] -> cont (Int 1)
                                       | List _ -> cont (Int 0)
                                       | _ -> Abort ("Prim1: isnil on non list value: " + (ppValue v1))
+                     | ("fst",TypP) -> match v1 with 
+                        | PairV(v1, _) -> cont v1
+                        | _ -> Abort ("Prim1: fst on non pair value: " + (ppValue v1))
+                     | ("snd",TypP) -> match v1 with 
+                        | PairV(_, v2) -> cont v2
+                        | _ -> Abort ("Prim1: snd on non pair value: " + (ppValue v2))
                      | _ -> Abort ("Prim1 "+ope+" not implemented")) econt
   | Prim2(ope, e1, e2,_) ->
     evalExpr env e1
@@ -209,6 +218,7 @@ let check e =
                         check' e2 env &&
                         check' e3 env 
     | Fun(x,fBody,_) -> check' fBody (x::env)
+    | Pair(e1, e2, _) -> check' e1 env && check' e2 env (* Exercise *)
     | Call(eFun,eArg,_,_) -> check' eFun env && check' eArg env
     | Raise(e,_) -> check' e env 
     | TryWith(e1,ExnVar exn,e2) -> check' e1 env && check' e2 env && List.exists ((=)exn) env

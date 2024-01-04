@@ -18,6 +18,7 @@ type expr<'a> =
   | Let of valdec<'a> list * expr<'a>
   | Raise of expr<'a> * 'a option
   | TryWith of expr<'a> * exnvar * expr<'a>
+  | Pair of expr<'a> * expr<'a> * 'a option
 and valdec<'a> =
   | Fundecs of (string * string * expr<'a>) list  (* Top level mutual recursive function declarations *)
   | Valdec of string * expr<'a>
@@ -60,6 +61,7 @@ let ppProg fPP p : string =
     | Raise(e,aOpt) -> "raise " + (ppExpr' i e) + (fPP aOpt)
     | TryWith(e1,exn,e2) -> "\n" + (indent (i+2)) + "(try " + (ppExpr' (i+4) e1) +
                             "\n" + (indent (i+2)) + "with " + (ppExnVar exn) + " -> " + (ppExpr' (i+4) e2) + ")"
+    | Pair(e1, e2, aOpt) -> "(" (ppExpr' i e1) + "," + (ppExpr' i e2) + ")" + (fpp aOpt)
   and ppExnVar = function
     | ExnVar exn -> exn      
   and ppValDec' i = function
@@ -96,6 +98,7 @@ let rec getOptExpr e : 'a Option =
   | Call(e1,e2,t,aOpt) -> aOpt
   | Raise(e,aOpt) -> aOpt
   | TryWith(e1,exn,e2) -> getOptExpr e1 (* e1 and e3 has same type *)
+  | Pair(_,_,aOpt) -> aOpt
   | Let(_,letBody) -> getOptExpr letBody
 
 let tailcalls p : program<'a> =
@@ -113,6 +116,7 @@ let tailcalls p : program<'a> =
     | If(e1,e2,e3) -> If(tc' false e1,tc' tPos e2,tc' tPos e3)
     | Fun(x,e,aOpt) -> Fun(x,tc' true e,aOpt)
     | Call(e1,e2,_,aOpt) -> Call(tc' false e1,tc' false e2,Some tPos,aOpt)
+    | Pair(e1,e2, aOpt) -> Pair(tc' false e1, tc' false e2, aOpt)
     | Let(valdecs,letBody) -> Let(List.map (tcValdec' false) valdecs,tc' tPos letBody)
     | Raise(e1,aOpt) -> e
       (* an exception handler must be popped after e1 *)    
@@ -139,6 +143,7 @@ let rec freevars e : string Set =
   | AndAlso(e1,e2,_) -> (freevars e1) + (freevars e2)
   | OrElse(e1,e2,_) -> (freevars e1) + (freevars e2)
   | Seq(e1,e2,_) -> (freevars e1) + (freevars e2)
+  | Pair(e1,e2,_) -> (freevars e1) + (freevars e2)
   | Let(valdecs,letBody) ->
     (* Below (... +fvs - bvs) assumes alpha conversion. See ex11.sml for an example where
        it fails. Alpha conversion is covered as an exercise. *)  
