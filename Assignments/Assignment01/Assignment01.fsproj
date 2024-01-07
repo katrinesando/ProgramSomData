@@ -7,29 +7,62 @@
 
     <ItemGroup>
         <Compile Include="Library.fs" />
+        <ClCompile Include="ListC\ListVM\ListVM\utils_win.c" />
+        <ClCompile Include="ListC\ListVM\ListVM\utils_unix.c" />
+        <Content Include="ListC\ListVM\ListVM\ListVM.vcxproj.user" />
+        <Content Include="ListC\ListVM\ListVM\ListVM.vcxproj.filters" />
+        <Content Include="ListC\ListVM\ListVM\ListVM.vcxproj" />
+        <Content Include="ListC\ListVM\ListVM\listmachine.exe" />
+        <ClCompile Include="ListC\ListVM\ListVM\listmachine.c" />
+        <Content Include="ListC\ListVM\ListVM\listmachine" />
+        <Content Include="ListC\ListVM\.vs\ListVM\v14\.suo" />
+        <Content Include="ListC\ListVM\ListVM.VC.db" />
+        <Content Include="ListC\ListVM\ListVM.sln" />
+        <Compile Include="ListC\Absyn.fs" />
+        <Content Include="ListC\Timer.class" />
+        <Content Include="ListC\StringConcatSpeed.java" />
+        <Content Include="ListC\StringConcatSpeed.class" />
+        <Content Include="ListC\resurrection.exe" />
+        <Compile Include="ListC\resurrection.cs" />
+        <Content Include="ListC\README.TXT" />
+        <Content Include="ListC\prog1" />
+        <Content Include="ListC\prog0" />
+        <Compile Include="ListC\ParseAndComp.fs" />
+        <Compile Include="ListC\Parse.fs" />
+        <Compile Include="ListC\Machine.fs" />
+        <Content Include="ListC\listmachine" />
+        <Compile Include="ListC\ListCC.fs" />
+        <Content Include="ListC\listcc.exe" />
+        <Content Include="ListC\exGC01.out" />
+        <Content Include="ListC\exGC01.lc" />
+        <Content Include="ListC\exam10_2021.out" />
+        <Content Include="ListC\exam10_2021.lc" />
+        <Content Include="ListC\ex37.out" />
+        <Content Include="ListC\ex37.lc" />
+        <Content Include="ListC\ex36.out" />
+        <Content Include="ListC\ex36.lc" />
+        <Content Include="ListC\ex35.out" />
+        <Content Include="ListC\ex35.lc" />
+        <Content Include="ListC\ex34.out" />
+        <Content Include="ListC\ex34.lc" />
+        <Content Include="ListC\ex33.out" />
+        <Content Include="ListC\ex33.lc" />
+        <Content Include="ListC\ex32.out" />
+        <Content Include="ListC\ex32.lc" />
+        <Content Include="ListC\ex31.out" />
+        <Content Include="ListC\ex31.lc" />
+        <Content Include="ListC\ex30.out" />
+        <Content Include="ListC\ex30.lc" />
+        <Content Include="ListC\ex11.out" />
+        <Content Include="ListC\CPar.fsy" />
+        <Compile Include="ListC\CPar.fsi" />
+        <Compile Include="ListC\CPar.fs" />
+        <Compile Include="ListC\Comp.fs" />
+        <Content Include="ListC\CLex.fsl" />
+        <Compile Include="ListC\CLex.fs" />
+        <Content Include="ListC\CircularQueue.java" />
+        <Content Include="ListC\CircularQueue.class" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Content Include="BPRD-10-ahad-biha-kmsa\ReadMe.txt" />
-      <Compile Include="BPRD-10-ahad-biha-kmsa\Exercise_11_1.fs" />
-      <Compile Include="BPRD-10-ahad-biha-kmsa\exercise_11_2.fs" />
-      <Compile Include="BPRD-10-ahad-biha-kmsa\Icon.fs" />
-      <ClCompile Include="Cont\testlongjmp.c" />
-      <Content Include="Cont\testlongjmp" />
-      <Content Include="Cont\README.TXT" />
-      <Compile Include="Cont\Icon.fs" />
-      <Content Include="Cont\Factorial.java" />
-      <Content Include="Cont\Factorial.class" />
-      <Content Include="Cont\Factorial$2.class" />
-      <Content Include="Cont\Factorial$1.class" />
-      <Compile Include="Cont\Contimp.fs" />
-      <Compile Include="Cont\Contfun.fs" />
-      <Content Include="Cont\Cont.fsproj" />
-      <Content Include="Cont\Cont.class" />
-      <None Include="fac.fsx" />
-      <Compile Include="Factorial.cs" />
-      <Content Include="Factorial2.java" />
-      <None Include="prod.fsx" />
-    </ItemGroup>
 
 </Project>
